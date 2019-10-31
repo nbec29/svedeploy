@@ -300,7 +300,6 @@ def poblacionEliminar(request, identificacion):
     Poblacion = poblacion.objects.get(identificacion=identificacion)
     if request.method == 'POST':
         Poblacion.delete()
-    TestCase.assertEquals(identificacion, Poblacion.identificacion)
     return render(request, 'RiesgoME/eliminarPoblacionME.html', {'poblacion': Poblacion})
 
 
@@ -671,8 +670,3 @@ def enviarCorreoDiagnostico(prediccion, perfilDemografico, user):
          datos,
         'sveuniquindio@gmail.com',
         ['sveuniquindio@gmail.com'],)
-
-class Testing (unittest.TestCase):
-
-    def test1_eliminar(self):
-        self.assertIs
