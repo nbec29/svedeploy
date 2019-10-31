@@ -1,0 +1,64 @@
+{% extends "base_generic.html" %}
+
+{% block nav %}
+ <nav class="barraNav">
+
+                    <ul >
+                     <li> <a href="/autenticacion/registro">Registrarse</a></li>
+
+                 </ul>
+
+
+
+            </nav>
+{% endblock %}
+
+{% block content %}
+<body>
+<p align="center">Iniciar Sesión.</p>
+{% if form.errors %}
+<div class="alert alert-success alert-dismissible" align="center">
+    <a href="/login" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Info!</strong> Usuario o contraseña inválidos, por favor intente de nuevo
+</div>
+
+
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+
+
+
+<div class="alert alert-success alert-dismissible" align="center">
+    <a href="/login" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Info!</strong> Su usuario no se encuentra registrado, regístrese para poder ingresar
+</div>    {% else %}
+<div class="alert alert-success alert-dismissible" align="center">
+    <a href="/login" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Info!</strong> Inicie sesión para ingresar a la página
+</div>     {% endif %}
+
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+<div align="center">
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div align="center">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</div>
+
+<div align="center">
+  <input type="submit" value="Ingresar"/>
+  <input type="hidden" name="next" value="{{ next }}" />
+   <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+
+</div>
+</form>
+
+{% endblock %}

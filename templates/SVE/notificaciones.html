@@ -1,0 +1,62 @@
+{% extends "base_generic.html" %}
+
+  {% block title %} Notificaciones {% endblock%}
+{% block content %}
+
+
+<h1 align="center">
+        Lista de Test
+    </h1>
+<table align="center" border="1">
+<thead>
+        <tr>
+            <td align="center">Riesgo</td>
+             <td align="center">cecula</td>
+             <td align="center">nombre</td>
+             <td align="center">apellido</td>
+             <td align="center">dependencia</td>
+             <td align="center">cargo</td>
+             <td align="center">diagnóstico</td>
+             <td align="center">fecha realización</td>
+             
+            
+        </tr>
+
+    </thead>
+    <tbody>
+
+    {% if perfilDemograficos %}
+  
+    {% for perfilDemografico in perfilDemograficos %}
+        <tr>
+            <td>&nbsp; {{perfilDemografico.test0.idRiesgo.nombre}} &nbsp;</td>
+            <td>&nbsp; {{perfilDemografico.cedula0}} &nbsp;</td>
+            <td>&nbsp; {{perfilDemografico.nombre0}} &nbsp;</td>
+            <td>&nbsp; {{perfilDemografico.apellido0}} &nbsp;</td>
+            <td>&nbsp; {{perfilDemografico.dependencia0.nombre}} &nbsp;</td>
+            <td>&nbsp; {{perfilDemografico.cargo0.nombre}} &nbsp;</td>
+            <td>&nbsp; {{perfilDemografico.test0.diagnostico}} &nbsp;</td>
+            <td>&nbsp; {{perfilDemografico.test0.fecha}} &nbsp;</td>
+            
+
+        </tr>
+
+
+    {% endfor %}
+
+    {% else %}
+
+    <h1>
+        No hay personas registradas
+    </h1>
+    
+    {% endif %}
+    </tbody>
+</table>
+<br>
+
+<br>
+
+
+
+    {% endblock %}

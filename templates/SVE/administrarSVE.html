@@ -1,0 +1,53 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<body>
+    <div align="center">
+            <h1>Administrador del S.V.E</h1>
+                     <br></br>
+    </div>
+    <div id="listageneral">
+        <ul class="cards-list">
+           <li class="ci-4 cards-item">
+             <div class="card">
+              <a href="/inicio/notificaciones" class="card-container" rel="keep-params">
+                 <div class="card-icon card-icon-1">
+                            <span class="icono fa fa-bell"></span>
+                 </div>
+                <div class="card-title-container">
+                    <h3 class="card-title">
+                        Notificaciones
+                    </h3>
+                </div>
+              </a>
+             </div>
+           </li>
+
+           <li class="ci-4 cards-item">
+             <div class="card">
+              <a href="/inicio/administrarSVE/poblacionSVE" class="card-container" rel="keep-params">
+                    <div class="card-icon card-icon-2">
+                        <i class="icono fa fa-users"></i>
+                    </div>
+                    <div class="card-title-container">
+                        <h3 class="card-title">Población</h3>
+                    </div>
+              </a>
+             </div>
+           </li>
+           <li class="ci-4 cards-item">
+             <div class="card">
+                <a href="#" class="card-container" rel="keep-params">
+                    <div class="card-icon card-icon-4">
+                        <i class="icono fa fa-bar-chart"></i>
+                    </div>
+                    <div class="card-title-container">
+                        <h3 class="card-title">Estadísticas</h3>
+                    </div>
+                </a>
+             </div>
+           </li>
+        </ul>
+    </div>
+</body>
+{% endblock %}

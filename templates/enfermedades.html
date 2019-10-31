@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block 1 %}
+
+            Enfermedades
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <h1>lista de enfermedades</h1>
+    <div class="enfermedades">
+
+        {% for enfermedad in enfermedades %}
+        <div class="enfermedad"><a href=""></a>
+            <h2>{{enfermedad.setterIdentificacion}}</h2>
+            <p>{{enfermedad.def_corta}}</p>
+            <p>{{enfermedad.fecha}}</p>
+
+        </div>
+        {% endfor %}
+
+
+     </div>
+
+
+<h5>
+
+        este es el contenido de enfermedades
+
+
+</h5>
+
+
+
+<h5>soy el footer base</h5>
+</body>
+</html>

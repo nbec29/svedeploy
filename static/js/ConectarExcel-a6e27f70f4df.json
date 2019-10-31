@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "conectarexcel",
+  "private_key_id": "a6e27f70f4df861893989d20d052a0c0abdbc6b7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCafsHAWc0a9eMX\nS3VdjZ8Zxz9aHA2KDtshfEn6mdMqTFW+O5hK3EUNtIdbMxLym86AAe5/gZ/DjjWe\nkqwBjihNbfnM+1LpMjuG0ZRBfOdMLy2i4JZWPRyc9GPwuCTTZy31wqlYKcLaX37V\nO6jK5eUm58NAoCrn94fKhWGOwLrhW57CS6iCINBAueuui/d4KqBRfoxbCCIinPB4\neuvROSDlhq6Sl8DhWe7zgi8hbiJht4A0xAYnqWNGR/3kO1cOBpaLi31jAGZlinkv\nZiI6Y09oSAAPd5OaDBM+uy7Jobv0gRG4JnrrO0mpzbOjbpdW4V0dxE/cuHQ50lO4\nGdKrmCz1AgMBAAECgf99hn/lyRDc1uusAaNaX7blOv4+OIzHn0pr6pAxDMqFk4AX\nEFSsfkuc1xEjCFxcwjsFxowBDVDBksn+DS20FcypHLHZ2lmDH00+PQo4K0PCopJx\nxAhiCUU2QVryOquxGCQ/ieoNt+CZjP2AQvjh4ehNtADwgTJbRsMNyVF6qx0r/AHL\nWErK3wdwC3ZJL/zPWYqE5MYK7uk9vEUgTHMR0B7ojqg/+1ccY52tA+v/7z9PA3ru\nR0ZjxqsIcpxvCZzNjPa8zUs2mVdPJbxoJaJ+/PdhV0HGbgI3mdKcO0y3JNeh4tam\nNqjJHPIL+ljEHYtclvkG3Nxh5wBs6jXJeb6nFcECgYEAyiZtdcFXewyuSGqjMf3Q\niGROE4ODmCRDza+yzvQ1/D31YYaqULRX1tAA38UC9LKJHoJ7MwUs+FiffgVfVLmk\nhAxde+a5GSVoJZoLSC+GvoqW0iXWK8PTtvjMK5fojx0EhI0XBcE12IlH0SC0E2+S\nUrt4O/HNAXmJTdp+i61aYscCgYEAw6aDA9CV3DUvdBbNW6KNWoynfxL0mIxSWlbZ\n3aQS6LCUTA2aQA/NgeemumtdVgAXQcPP9MYdk8dcoT9KuK4HSEvGlSi32avXMaun\nG7ZnEt/GjIoEIh4V2Y1AWqTepIBvqgw6J6B0isbFZoSfDmSuoQJ/6In6+bt3AopN\nFZrCNmMCgYBjQCTECQ5bgula8sh3dgfZv226FPsaSsvjhB1FkQ+kbgM5Q/YBM9pg\nxLV5KHCAFdxO13+HmEXxFQoRxK9+mLsWfj+z4p8EoqIUvCJH6dW9XawZN6yExlv/\nXP5ZdPcgtP2P2vnvwGIgk55oJidj14a/Cf5JaDngPHzWda1mBNH45wKBgHqNI4XR\nMv2zhtzlp46dnIM6lXRgkDu5saAKxP8zVfDRIqMc5iD4hRa43tPoipdjCS5VlD5T\nlpVJjHkoZwqVX9RmOqaV0cuT+wCO7+bI83l8GCdSEFK6m58g/k2I9jj+hnNyoz7N\nIBMJfP7BVcwzPrt2EF69hyrExUAfFzfQL5TXAoGAZajAtMMpBcjP3skvPQJ/36aH\noDS9vyfu4qke/oQtEcXrNEcqsXIoE5eZqzLSe9F7lwM8m5uWsrSG0RD39CXhaLUw\neRTCDy2k260HuVQqD8Vxok+Sm+EyYSVGMKH89FtSdTzz6vUifNezIu/ng7LkqpWf\n4ixIA2b6WCvFckPk3P0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sve-401@conectarexcel.iam.gserviceaccount.com",
+  "client_id": "114845706995994987861",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sve-401%40conectarexcel.iam.gserviceaccount.com"
+}

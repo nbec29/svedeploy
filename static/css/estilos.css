@@ -1,0 +1,535 @@
+header {
+  padding: 30px;
+  text-align: center;
+  background: #007833;
+  color: red;
+  font-size: 40px;
+
+}
+body{
+background-color: white;
+}
+
+.barraNav {
+  list-style-type: none;
+  margin: 10;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.barraNav li  {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+
+}
+
+
+li a:hover, .Riesgo:hover .dropbtn {
+  background-color: green;
+  text-decoration: none;
+  color: black;
+
+}
+
+li.Riesgo {
+  display: inline-block;
+}
+
+.Riesgo-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.Riesgo-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.Riesgo-content a:hover {background-color: #f1f1f1;}
+
+.Riesgo:hover .Riesgo-content {
+  display: block;
+}
+
+
+
+li a, .dropbtn2 {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .Riesgo2:hover .dropbtn2 {
+  background-color: green;
+}
+
+li.Riesgo2 {
+  display: inline-block;
+}
+
+.Riesgo2-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.Riesgo2-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.Riesgo2-content a:hover {background-color: #f1f1f1;}
+
+.Riesgo2:hover .Riesgo2-content {
+  display: block;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: #007830;
+  padding: 30px;
+  flex:  0 0 auto;
+
+
+}
+
+input[type=submit] {
+ display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 2px #999;
+
+
+}
+
+input[type = text]{
+  width: 50%;
+  padding: 5px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  align: center;
+
+}
+
+input[type = email]{
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  align: center;
+
+}
+
+input[type = password]{
+  width: 50%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  align: center;
+}
+
+input[type=submit] {
+ display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 2px #999;
+
+
+}
+
+
+button {
+ display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 2px #999;
+}
+
+input[type = text]{
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  align: center;
+
+}
+
+input[type = password]{
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  align: center;
+}
+
+
+p {
+ font-family: arial;
+  font-size: 20px;
+  color: black;
+}
+
+
+
+.cards-list {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.ci-2 {
+	flex-basis: 50%;
+}
+
+.ci-3 {
+	flex-basis: 33.3%;
+}
+
+.ci-4 {
+	flex-basis: 25%;
+}
+
+.ci-5 {
+	flex-basis: 20%;
+}
+
+.cards-item {
+	clear: both;
+	float: left;
+	position: relative;
+	display: flex;
+	vertical-align: top;
+	font-size: 1.4rem;
+	line-height: 2rem;
+}
+
+.card-item-cantidad {
+	background-color: #007f36;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+}
+
+.card-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.card-item-cantidad {
+	background-color: #007f36;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+}
+
+.card {
+	margin: 8px;
+	overflow: hidden;
+	display: flex;
+	transition: all .1s ease-out;
+	box-shadow: 0 2px 4px -2px rgba(0, 0, 0, .075);
+	width: calc(100% - 16px);
+	border-radius: 2px;
+	position: relative;
+}
+
+.card-container, .card-container:hover {
+	background-color: #ffffff;
+	text-decoration: none;
+	outline-width: 0px;
+	border-radius: 2px;
+	background-clip: padding-box;
+	width: 100%;
+	height: 100%;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.075);
+	border-image: initial;
+	position: relative;
+	color: rgb(43, 43, 43);
+}
+
+.card-container:hover {
+	background-color: rgb(64, 64, 64, 0.05);
+}
+
+.card-0 {
+	background-color: #007f36;
+	border: none;
+}
+
+.card-1 {
+	background-color: #FFCC00;
+	border: none;
+}
+
+.card-2 {
+	background-color: #DC911B;
+	border: none;
+}
+
+.card-3 {
+	background-color: #1169B0;
+	border: none;
+}
+
+.card-4 {
+	background-color: #009DE0;
+	border: none;
+}
+
+.card-5 {
+	background-color: #C20B19;
+	border: none;
+}
+
+.card-6 {
+	background-color: #8FB435;
+	border: none;
+}
+
+.card-7 {
+	background-color: #8E1C7D;
+	border: none;
+}
+
+.card-8 {
+	background-color: #009640;
+	border: none;
+}
+
+.card-bar {
+	display: block;
+	height: 12px;
+	position: relative;
+}
+
+.card-icon {
+	width: 64px;
+	height: 64px;
+	line-height: 64px;
+	margin-top: 36px;
+	color: rgb(255, 255, 255);
+	margin: 24px auto 0px;
+	border-radius: 100px;
+	display: block;
+}
+
+.card-icon-1 {
+	background-color: #ee4035;
+}
+
+.card-icon-2 {
+	background-color: #f37736;
+}
+
+.card-icon-3 {
+	background-color: #ffa700;
+}
+
+.card-icon-4 {
+	background-color: #7bc043;
+}
+
+.card-icon-5 {
+	background-color: #21cea2;
+}
+
+.card-icon-6 {
+	background-color: #0392cf;
+}
+
+.card-icon-7 {
+	background-color: #212cce;
+}
+
+.card-icon-8 {
+	background-color: #812c99;
+}
+
+.card-icon-9 {
+	background-color: #992c64;
+}
+
+.card-icon-10 {
+	background-color: #b25260;
+}
+
+.card-icon-11 {
+	background-color: #992c64;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2em;
+}
+
+.icono {
+	font-size: 32px;
+	width: 68px;
+	height: 64px;
+	line-height: 60px;
+	display: inline-block;
+	overflow: hidden;
+	text-align: center;
+	vertical-align: top;
+}
+
+.card-title-container {
+	padding-top: 12px;
+	padding-bottom: 36px;
+	display: block;
+	padding: 24px 16px;
+	box-sizing: border-box;
+}
+
+.card-title-container-s {
+	padding-top: 12px;
+	padding-bottom: 36px;
+	display: block;
+	padding: 12px 4px;
+	box-sizing: border-box;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.card-title {
+	white-space: normal;
+	font-size: 1.2rem;
+	line-height: 2rem;
+	margin: 0;
+	overflow: hidden;
+	text-align: center;
+	text-overflow: ellipsis;
+	color: #404040;
+	font-weight: 400;
+}
+
+.card-title-s {
+	white-space: normal;
+	font-size: 1rem;
+	line-height: 2rem;
+	margin: 0;
+	overflow: hidden;
+	text-align: center;
+	text-overflow: ellipsis;
+	color: #404040;
+	font-weight: 400;
+}
+
+.card-colorFill {
+	background-color: #309fdb;
+	color: #ffffff;
+	display: block;
+}
+
+.estadisticas_especifico {
+	font-weight: 900;
+	color: #FFFFFF;
+}
+
+.enlace, .enlace:hover{
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 2px #999;
+  text-decoration: none;
+  color: white;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  color: white;
+  font-size: 18px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.enlaceFooter, .enlaceFooter:hover{
+    color: white;
+}

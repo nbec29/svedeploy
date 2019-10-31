@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+ {% block content %}
+<form method="post" align="center">
+            <div align="center">
+
+
+            {% csrf_token %}
+                <h3>¿Desea eliminar el siguiente correo de la poblacion? {{Poblacion.correo}}</h3>
+
+
+                </div>
+               <button  class="btn btn-danger" type="submit"  >Si, Eliminar</button>
+                <a class="btn btn-default" href="/inicio/administrarSVE/poblacionSVE/lista">cancelar</a>
+
+
+
+        </form>
+   {% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base_generic.html" %}
+
+ {% block content %}
+        <body>
+        <script type="text/javascript">
+                  function redirigirALista(){
+                   location.href = "/inicio/administrarSVE/poblacionSVE/lista";
+
+
+                   }
+                   function valoresBlanco(){
+                   document.getElementsByName('correo').value="";
+                   }
+
+        </script>
+
+
+
+        <br></br>
+            <div align="center">
+                <h1>Población S.V.E</h1>
+                <h2 align="justify">La población de la universidad del Quindio se encuentra dividida en  los riesgos presentes en la misma,
+                    esta sección es la encargada de enviar los correos electronicos, en el cual se informa a la poblacion que debe
+                de registrarse y responder el test correspondiente</h2>
+                    <br></br>
+                <form method="post" align="center">
+            <div align="center">
+
+
+            {% csrf_token %}
+            {{ form.as_p }}
+
+                </div>
+               <a href="/inicio/administrarSVE" class="enlace">Volver</a> &nbsp;
+               <button   onclick="valoresBlanco()"  >Guardar</button>
+
+
+
+        </form>
+ <div id="listageneral">
+        <ul class="cards-list">
+           <li class="ci-4 cards-item">
+             <div class="card">
+              <a href="javascript:void(0);" onclick="redirigirALista();" class="card-container" rel="keep-params">
+                 <div class="card-icon card-icon-3">
+                            <i class="icono fas fa-hand-paper"></i>
+                 </div>
+                <div class="card-title-container">
+                    <h3 class="card-title">
+                        Ir a la lista de Riesgos Musculo-Esqueleticos
+                    </h3>
+                </div>
+              </a>
+             </div>
+           </li>
+
+           <li class="ci-4 cards-item">
+             <div class="card">
+              <a href="/inicio/administrarSVE/poblacionSVE" class="card-container" rel="keep-params">
+                    <div class="card-icon card-icon-5">
+                        <i class="icono fas fa-flask"></i>
+                    </div>
+                    <div class="card-title-container">
+                        <h3 class="card-title">Ir a la lista de riesgos Químico</h3>
+                    </div>
+              </a>
+             </div>
+           </li>
+           <li class="ci-4 cards-item">
+             <div class="card">
+                <a href="#" class="card-container" rel="keep-params">
+                    <div class="card-icon card-icon-7">
+                        <i class="icono fas fa-biohazard"></i>
+                    </div>
+                    <div class="card-title-container">
+                        <h3 class="card-title">Ir a la lista de riesgos Biológico</h3>
+                    </div>
+                </a>
+             </div>
+           </li>
+        </ul>
+    </div>
+
+
+            </div>
+
+
+            <br></br>
+
+        </body>
+    {% endblock %}

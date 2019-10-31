@@ -1,0 +1,700 @@
+{% extends "base_generic.html" %}
+
+  {% block title %}Formulario Desordenes Musculo-Esqueleticos{% endblock%} 
+
+ {% block content %}
+   
+ 
+
+ 
+
+  <body>
+
+    <!-- EN ESTA SECCION HEADER ESTA BASICAMENTE LA PARTE DE ARRIBA DE LA PAGINA
+    TOP MENU Y REDES SOCIALES
+    TITULO DE LA PAGINA CON EL SUBTITULO -->
+    <div class="header">
+       
+    </div>
+
+
+    <div class="main">
+      <div class="titulo-pag">
+        <div class="contenedor">
+          <h1>Desordenes Musculo-Esqueleticos</h1>
+          <p class="subtitulo">TEST MUSCULOESQUELETICO </p>
+        </div>
+      </div>
+     
+      <form class="Formulario" method="POST">
+          {% csrf_token %}
+
+          {% if tests2 %}
+          {% for test2 in tests2%}
+              la predicción es:
+              {{ test2.diagnostico }}  
+          {% endfor %}
+          {% endif %}
+      <div class="infoTrabajador">
+          <h3 class=tituloArticulo> INFORMACIÓN DEL TRABAJADOR  </h3>
+        </div>
+       <input class="input" name= "nombre" type="text" placeholder="&#128100; Nombre Completo" required autofocus id="nombre">
+       <input class="input" name= "apellido" type="text" placeholder="&#128100; Apellidos" required autofocus id="apellidos">
+       <input class="input" name= "cedula" type="text" placeholder="&#128450; Cedula" required autofocus id="cedula">
+
+       <fieldset>
+               <legend> Sexo </legend>
+               <input type="radio" name="generoUsuarioEs" value="1" required autofocus> Masculino
+               <input type="radio" name="generoUsuarioEs" value="2" required autofocus>Femenino<br>
+
+        </fieldset>
+        
+       <input class="input" type="text" placeholder="Peso" name="peso" required autofocus id="peso">
+       <input class="input" type="text" placeholder="Estatura" required autofocus id="estatura">
+       <input class="input" type="number" placeholder="Edad" required autofocus id="edad">
+
+       <fieldset>
+
+               <legend>¿Usted es?</legend>
+               <input type="radio" name="mano" value="1" required autofocus> Diestro  <!--  Valor de CERO para uso futuro -->
+               <input type="radio" name="mano" value="2" required autofocus> Zurdo <!--  Valor de UNO para uso futuro -->
+               <input type="radio" name="mano" value="3" required autofocus> Ambos<br> <!--  Valor de DOS para uso futuro -->
+
+        </fieldset>
+        
+        <p>Seleccione su Dependencia</p>
+        <select name="Seleccione su Dependencia" id="dependencia">
+          <option value="1">DEPENDENCIA 1</option>
+          <option value="2">DEPENDENCIA 2</option>
+          <option value="3">DEPENDENCIA 3</option>
+          <option value="4">DEPENDENCIA 4</option>
+        </select>
+
+          <p>Su cargo actual es</p>
+
+          <select name="Cargo actual" id="cargo">
+            <option value="1">CARGO 1</option>
+            <option value="3">CARGO 2</option>
+            <option value="3">CARGO 3</option>
+            <option value="4">CARGO 4</option>
+          </select>
+
+        <fieldset>
+                  <legend>Antigüedad en el cargo</legend>
+                  <input class="input" type="number" min="0" max="99" placeholder=" Años " name="anios" required autofocus id="anios">
+                  <input class="input" type="number" min="1" max="11" placeholder=" Meses " name="meses" required autofocus id="meses">
+
+        </fieldset>
+        
+        <fieldset>
+          <legend>¿Realiza actividad física?</legend>
+          <input type="radio" name="actividad" value="1" onchange="makeVisible();" required autofocus> si
+          <input type="radio" name="actividad" value="2" onchange="makeInvisible();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadFisica"><br>
+
+        </fieldset>
+        
+        <p>¿Cuántas horas trabaja por día?</p>
+
+          <select name="trabajoDiario" id="horasTrabajo" >
+            <option value="1">0H - 1H</option>
+            <option value="2">1H - 2H </option>
+            <option value="3">2H - 4H </option>
+            <option value="4">4H - 6H </option>
+            <option value="5">8H </option>
+            <option value="6">12H </option>
+            <option value="7">Otro </option>
+          </select>
+
+        <fieldset>
+                  <legend>¿La duración semanal de la jornada es variable? </legend>
+                  <input type="radio" name="semanal" value="1" required autofocus> si
+                  <input type="radio" name="semanal" value="2" required autofocus> no <br>
+
+        </fieldset>  
+
+
+
+
+
+
+        <h3>HOMBRO</h3>
+
+        <fieldset name="lugarMolestiaHombro">
+
+               <legend>¿Posee molestias en el Hombro?</legend>
+               <input type="radio" name="ladoDolor" value="1" required autofocus> Lado izquierdo  <!--  Valor de CERO para uso futuro -->
+               <input type="radio" name="ladoDolor" value="2" required autofocus> Lado derecho <!--  Valor de UNO para uso futuro -->
+               <input type="radio" name="ladoDolor" value="3" required autofocus> Ambos <br> <!--  Valor de DOS para uso futuro -->
+
+        </fieldset>
+        
+        <p>Los síntomas en su hombro se presentan cuando:</p>
+        <select name="Seleccione cada cuanto presenta la sintomatologia en su hombro" id="cuandoHombro">
+          <option value="0">-------------------</option>
+          <option value="1">Al realizar mi trabajo</option>
+          <option value="2">Todo el tiempo</option>
+          <option value="3">Al final del dia</option>
+          <option value="4">Al final de la semana </option>
+          <option value="5">En mi casa </option>
+
+        </select>
+        
+        <p>Generalmente se presentan como:</p>
+        <select name="Generalmente se presentan como:" id="sintomHombro">
+          <option value="0">-------------------</option>
+          <option value="1">Dolor</option>
+          <option value="2">Hormigueo</option>
+          <option value="3">Malestar </option>
+          <option value="4">Adormecimiento</option>
+
+        </select>
+        
+        <p>La molestia se presenta cuando efectua que tipo de movimientos:</p>
+        <select name="La molestia se presenta cuando efectua que tipo de movimientos:" id="molesMovimientoHombro">
+          <option value="0">-------------------</option>
+          <option value="1">Hacia adelante:</option>
+          <option value="2">Hacia atrás:</option>
+         </select>
+         
+        <p>Con que intensidad se presentan los dolores o molestias ( Siendo 0 como lo más minimo y 10 como lo máximo ) </p>
+        <div class="slidecontainer">
+        <input type="range" min="0" max="10" value="1" class="slider" name="IntensidadHombro" id="myRange">
+        <p>Valor: <span id="demo"></span></p>
+
+        </div>
+        
+        <fieldset name="actividadAumHombro">
+          <legend>¿Siente que si realiza alguna otra actividad o la molestia o dolor Aumenta?</legend>
+          <input type="radio" name="actividadAumHombro" value="1" onchange="makeVisibleHombro1();" required autofocus> si
+          <input type="radio" name="actividadAumHombro" value="2" onchange="makeInvisibleHombro1();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadHombro1"><br>
+
+        </fieldset>
+        
+        <fieldset name="actividadDismHombro">
+          <legend>¿Siente que si realiza alguna otra actividad o labor la molestia o dolor  Disminuye?</legend>
+          <input type="radio" name="actividadDismHombro" value="1" onchange="makeVisibleHombro2();" required autofocus> si
+          <input type="radio" name="actividadDismHombro" value="2" onchange="makeInvisibleHombro2();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadHombro2"><br>
+
+        </fieldset>
+        
+     
+         
+         <p>Cuanto dura aproximadamente cada episodio de molestia o dolor</p>
+         
+        <select name="Cuanto dura aproximadamente cada episodio de molestia o dolor" id="duracionHombro">
+          <option value="0">-------------------</option>
+          <option value="1">menos de 2 horas</option>
+          <option value="2">mas de 2 horas</option>
+          <option value="3">Es intermitente durante el dia</option>
+          <option value="4">Es constante durante todo el dia</option>
+
+         </select>
+         
+          <p>Si usted experimentó dolor, Cuánto interfirió con su habilidad para trabajar?  </p>
+         <select name="Cuánto interfirió con su habilidad para trabajar" id="interfereciaHombro">
+          <option value="0">-------------------</option>
+          <option value="1">No, en absoluto </option>
+          <option value="2">Poca interferencia</option>
+          <option value="3">Interfiere sustancialmente  </option>
+
+         </select>
+
+        <h3>CUELLO</h3>
+        <fieldset>
+
+               <legend>¿Posee molestias en el Cuello?</legend>
+               <input type="radio" name="ladoDolorCuello" value="1" required autofocus> Lado izquierdo  <!--  Valor de CERO para uso futuro -->
+               <input type="radio" name="ladoDolorCuello" value="2" required autofocus> Lado derecho <!--  Valor de UNO para uso futuro -->
+               <input type="radio" name="ladoDolorCuello" value="3" required autofocus> Ambos <br> <!--  Valor de DOS para uso futuro -->
+
+        </fieldset>
+        
+        <p>Los síntomas se presentan cuando:</p>
+        <select name="Seleccione cada cuanto presenta la sintomatologia en su Cuello" id="cuandoCuello">
+          <option value="0">-------------------</option>
+          <option value="1">Al realizar mi trabajo</option>
+          <option value="2">Todo el tiempo</option>
+          <option value="3">Al final del dia</option>
+          <option value="4">Al final de la semana </option>
+          <option value="5">En mi casa </option>
+
+        </select>
+        
+        <p>Generalmente se presentan como:</p>
+        <select name="Generalmente se presentan como: Cuello" id="sintomCuello">
+
+          <option value="0">-------------------</option>
+          <option value="1">Dolor</option>
+          <option value="2">Hormigueo</option>
+          <option value="3">Malestar </option>
+          <option value="4">Adormecimiento</option>
+
+        </select>
+        
+  <p>La molestia se presenta cuando efectua que tipo de movimientos:</p>
+        <select name="La molestia se presenta cuando efectua que tipo de movimientos: Cuello" id="molesMovimientoCuello">
+          <option value="0">-------------------</option>
+          <option value="1">Hacia adelante:</option>
+          <option value="2">Hacia atrás:</option>
+          <option value="3">Hacia los lados:</option>
+          <option value="4">Movimientos rotativos:</option>
+
+         </select>
+         
+        <p>Con que intensidad se presentan los dolores o molestias ( Siendo 0 como lo más minimo y 10 como lo máximo )  </p>
+
+        <div class="slidecontainer">
+        <input type="range" min="0" max="10" value="1" class="slider" name="IntensidadCuello"  id="myRangeCuello">
+        <p>Valor: <span id="demoCuello"></span></p>
+
+        </div>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o la molestia o dolor Aumenta?</legend>
+          <input type="radio" name="actividadAumCuello" value="1" onchange="makeVisibleCuello1();" required autofocus> si
+          <input type="radio" name="actividadAumCuello" value="2" onchange="makeInvisibleCuello1();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadCuello1"><br>
+
+        </fieldset>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o labor la molestia o dolor  Disminuye?</legend>
+          <input type="radio" name="actividadDismCuello" value="1" onchange="makeVisibleCuello2();" required autofocus> si
+          <input type="radio" name="actividadDismCuello" value="2" onchange="makeInvisibleCuello2();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadCuello2"><br>
+
+        </fieldset>
+        
+        
+         
+         <p>Cuanto dura aproximadamente cada episodio de molestia o dolor</p>
+         
+        <select name="Cuanto dura aproximadamente cada episodio de molestia o dolor : Cuello" id="duracionCuello">
+          <option value="0">-------------------</option>
+          <option value="1">menos de 2 horas</option>
+          <option value="2">mas de 2 horas</option>
+          <option value="3">Es intermitente durante el dia</option>
+          <option value="4">Es constante durante todo el dia</option>
+
+         </select>
+         
+          <p>Si usted experimentó dolor, Cuánto interfirió con su habilidad para trabajar?  </p>
+
+       <select name="Cuánto interfirió con su habilidad para trabajar : Cuello" id="interfereciaCuello">
+          <option value="0">-------------------</option>
+          <option value="1">No, en absoluto </option>
+          <option value="2">Poca interferencia</option>
+          <option value="3">Interfiere sustancialmente  </option>
+
+        </select>
+
+        <h3>CODO</h3>
+
+         <fieldset>
+
+               <legend>¿Posee molestias en el Codo?</legend>
+               <input type="radio" name="ladoDolorCodo" value="1" required autofocus> Lado izquierdo  <!--  Valor de CERO para uso futuro -->
+               <input type="radio" name="ladoDolorCodo" value="2" required autofocus> Lado derecho <!--  Valor de UNO para uso futuro -->
+               <input type="radio" name="ladoDolorCodo" value="3" required autofocus> Ambos <br> <!--  Valor de DOS para uso futuro -->
+
+        </fieldset>
+        
+        <p>Los síntomas se presentan cuando:</p>
+        <select name="Seleccione cada cuanto presenta la sintomatologia en su Codo" id="cuandoCodo">
+          <option value="0">-------------------</option>
+          <option value="1">Al realizar mi trabajo</option>
+          <option value="2">Todo el tiempo</option>
+          <option value="3">Al final del dia</option>
+          <option value="4">Al final de la semana </option>
+          <option value="5">En mi casa </option>
+
+        </select>
+        
+        <p>Generalmente se presentan como:</p>
+        <select name="Generalmente se presentan como: Codo" id="sintomCodo">
+          <option value="0">-------------------</option>
+          <option value="1">Dolor</option>
+          <option value="2">Hormigueo</option>
+          <option value="3">Malestar </option>
+          <option value="4">Adormecimiento</option>
+
+        </select>
+        
+  <p>La molestia se presenta cuando efectua que tipo de movimientos:</p>
+        <select name="La molestia se presenta cuando efectua que tipo de movimientos: Codo" id="molesMovimientoCodo">
+          <option value="0">-------------------</option>        
+          <option value="1">Hacia adelante:</option>
+          <option value="2">Hacia atrás:</option>
+          <option value="3">Hacia los lados:</option>
+          <option value="4">Movimientos rotativos:</option>
+
+         </select>
+         
+        <p>Con que intensidad se presentan los dolores o molestias ( Siendo 0 como lo más minimo y 10 como lo máximo )  </p>
+        <div class="slidecontainer">
+        <input type="range" min="0" max="10" value="1" name="IntensidadCodo" class="slider" id="myRangeCodo">
+        <p>Valor: <span id="demoCodo"></span></p>
+
+        </div>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o la molestia o dolor Aumenta?</legend>
+          <input type="radio" name="actividadAumCodo" value="1" onchange="makeVisibleCodo1();" required autofocus> si
+          <input type="radio" name="actividadAumCodo" value="2" onchange="makeInvisibleCodo1();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadCodo1"><br>
+
+        </fieldset>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o labor la molestia o dolor  Disminuye?</legend>
+          <input type="radio" name="actividadDismCodo" value="1" onchange="makeVisibleCodo2();" required autofocus> si
+          <input type="radio" name="actividadDismCodo" value="2" onchange="makeInvisibleCodo2();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadCodo2"><br>
+
+        </fieldset>
+        
+        
+         
+         <p>Cuanto dura aproximadamente cada episodio de molestia o dolor</p>
+         
+        <select name="Cuanto dura aproximadamente cada episodio de molestia o dolor : Codo" id="duracionCodo">
+          <option value="0">-------------------</option>
+          <option value="1">menos de 2 horas</option>
+          <option value="2">mas de 2 horas</option>
+          <option value="3">Es intermitente durante el dia</option>
+          <option value="4">Es constante durante todo el dia</option>
+
+         </select>
+         
+          <p>Si usted experimentó dolor, Cuánto interfirió con su habilidad para trabajar?  </p>
+         <select name="Cuánto interfirió con su habilidad para trabajar : Codo" id="interfereciaCodo">
+          <option value="0">-------------------</option>
+          <option value="1">No, en absoluto </option>
+          <option value="2">Poca interferencia</option>
+          <option value="3">Interfiere sustancialmente  </option>
+
+         </select>
+
+        <h3>MANO</h3>
+
+        <fieldset>
+
+               <legend>¿Posee molestias en el Mano?</legend>
+               <input type="radio" name="ladoDolorMano" value="1" required autofocus> Lado izquierdo  <!--  Valor de CERO para uso futuro -->
+               <input type="radio" name="ladoDolorMano" value="2" required autofocus> Lado derecho <!--  Valor de UNO para uso futuro -->
+               <input type="radio" name="ladoDolorMano" value="3" required autofocus> Ambos <br> <!--  Valor de DOS para uso futuro -->
+
+        </fieldset>
+        
+        <p>Los síntomas se presentan cuando:</p>
+        <select name="Seleccione cada cuanto presenta la sintomatologia en su Mano" id="cuandoMano">
+          <option value="0">-------------------</option>
+          <option value="1">Al realizar mi trabajo</option>
+          <option value="2">Todo el tiempo</option>
+          <option value="3">Al final del dia</option>
+          <option value="4">Al final de la semana </option>
+          <option value="5">En mi casa </option>
+
+        </select>
+        
+        <p>Generalmente se presentan como:</p>
+        <select name="Generalmente se presentan como: Mano" id="sintomMano">
+          <option value="0">-------------------</option>
+          <option value="1">Dolor</option>
+          <option value="2">Hormigueo</option>
+          <option value="3">Malestar </option>
+          <option value="4">Adormecimiento</option>
+
+        </select>
+        
+  <p>La molestia se presenta cuando efectua que tipo de movimientos:</p>
+        <select name="La molestia se presenta cuando efectua que tipo de movimientos: Mano" id="molesMovimientoMano">
+          <option value="0">-------------------</option>       
+          <option value="1">Hacia adelante:</option>
+          <option value="2">Hacia atrás:</option>
+          <option value="3">Hacia los lados:</option>
+          <option value="4">Movimientos rotativos:</option>
+
+         </select>
+         
+        <p>Con que intensidad se presentan los dolores o molestias ( Siendo 0 como lo más minimo y 10 como lo máximo )  </p>
+        <div class="slidecontainer">
+        <input type="range" min="0" max="10" value="1" class="slider" name="IntensidadMano" id="myRangeMano">
+        <p>Valor: <span id="demoMano"></span></p>
+
+        </div>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o la molestia o dolor Aumenta?</legend>
+          <input type="radio" name="actividadAumMano" value="1" onchange="makeVisibleMano1();" required autofocus> si
+          <input type="radio" name="actividadAumMano" value="2" onchange="makeInvisibleMano1();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadMano1"><br>
+
+        </fieldset>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o labor la molestia o dolor  Disminuye?</legend>
+          <input type="radio" name="actividadDismMano" value="1" onchange="makeVisibleMano2();" required autofocus> si
+          <input type="radio" name="actividadDismMano" value="2" onchange="makeInvisibleMano2();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadMano2"><br>
+
+        </fieldset>
+        
+        
+         
+         <p>Cuanto dura aproximadamente cada episodio de molestia o dolor</p>
+         
+        <select name="Cuanto dura aproximadamente cada episodio de molestia o dolor : Mano" id="duracionMano">
+          <option value="0">-------------------</option>
+          <option value="1">menos de 2 horas</option>
+          <option value="2">mas de 2 horas</option>
+          <option value="3">Es intermitente durante el dia</option>
+          <option value="4">Es constante durante todo el dia</option>
+
+         </select>
+         
+          <p>Si usted experimentó dolor, Cuánto interfirió con su habilidad para trabajar?  </p>
+         <select name="Cuánto interfirió con su habilidad para trabajar : Mano" id="interfereciaMano">
+          <option value="0">-------------------</option>
+          <option value="1">No, en absoluto </option>
+          <option value="2">Poca interferencia</option>
+          <option value="3">Interfiere sustancialmente  </option>
+
+         </select>
+
+        <h3>ESPALDA DORSAL</h3>
+
+         <fieldset>
+
+               <legend>¿Posee molestias en el espaldaDorsal?</legend>
+               <input type="radio" name="ladoDolorespaldaDorsal" value="1" required autofocus> Lado izquierdo  <!--  Valor de CERO para uso futuro -->
+               <input type="radio" name="ladoDolorespaldaDorsal" value="2" required autofocus> Lado derecho <!--  Valor de UNO para uso futuro -->
+               <input type="radio" name="ladoDolorespaldaDorsal" value="3" required autofocus> Ambos <br> <!--  Valor de DOS para uso futuro -->
+
+        </fieldset>
+        
+        <p>Los síntomas se presentan cuando:</p>
+        <select name="Seleccione cada cuanto presenta la sintomatologia en su espalda Dorsal" id="cuandoespaldaDorsal">
+          <option value="0">-------------------</option>
+          <option value="1">Al realizar mi trabajo</option>
+          <option value="2">Todo el tiempo</option>
+          <option value="3">Al final del dia</option>
+          <option value="4">Al final de la semana </option>
+          <option value="5">En mi casa </option>
+
+        </select>
+        
+        <p>Generalmente se presentan como:</p>
+        <select name="Generalmente se presentan como: espalda Dorsal" id="sintomespaldaDorsal">
+          <option value="0">-------------------</option>
+          <option value="1">Dolor</option>
+          <option value="2">Hormigueo</option>
+          <option value="3">Malestar </option>
+          <option value="4 ">Adormecimiento</option>
+
+        </select>
+        
+  <p>La molestia se presenta cuando efectua que tipo de movimientos:</p>
+        <select name="La molestia se presenta cuando efectua que tipo de movimientos: espalda Dorsal" id="molesMovimientoespaldaDorsal">
+          <option value="0">-------------------</option>       
+          <option value="1">Hacia adelante:</option>
+          <option value="2">Hacia atrás:</option>
+          <option value="3">Hacia los lados:</option>
+          <option value="4">Movimientos rotativos:</option>
+
+         </select>
+         
+        <p>Con que intensidad se presentan los dolores o molestias ( Siendo 0 como lo más minimo y 10 como lo máximo )  </p>
+        <div class="slidecontainer">
+        <input type="range" min="0" max="10" value="1" class="slider" name="IntensidadespaldaDorsal" id="myRangeespaldaDorsal">
+        <p>Valor: <span id="demoespaldaDorsal"></span></p>
+
+        </div>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o la molestia o dolor Aumenta?</legend>
+          <input type="radio" name="actividadAumespaldaDorsal" value="1" onchange="makeVisibleespaldaDorsal1();" required autofocus> si
+          <input type="radio" name="actividadAumespaldaDorsal" value="2" onchange="makeInvisibleespaldaDorsal1();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadespaldaDorsal1"><br>
+
+        </fieldset>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o labor la molestia o dolor  Disminuye?</legend>
+          <input type="radio" name="actividadDismespaldaDorsal" value="1" onchange="makeVisibleespaldaDorsal2();" required autofocus> si
+          <input type="radio" name="actividadDismespaldaDorsal" value="2" onchange="makeInvisibleespaldaDorsal2();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadespaldaDorsal2"><br>
+
+        </fieldset>
+        
+        
+         
+         <p>Cuanto dura aproximadamente cada episodio de molestia o dolor</p>
+         
+        <select name="Cuanto dura aproximadamente cada episodio de molestia o dolor : espalda Dorsal" id="duracionespaldaDorsal">
+          <option value="0">-------------------</option>
+          <option value="1">menos de 2 horas</option>
+          <option value="2">mas de 2 horas</option>
+          <option value="3">Es intermitente durante el dia</option>
+          <option value="4">Es constante durante todo el dia</option>
+
+         </select>
+         
+          <p>Si usted experimentó dolor, Cuánto interfirió con su habilidad para trabajar?  </p>
+         <select name="Cuánto interfirió con su habilidad para trabajar : espalda Dorsal" id="interfereciaespaldaDorsal">
+          <option value="0">-------------------</option>
+          <option value="1">No, en absoluto </option>
+          <option value="2">Poca interferencia</option>
+          <option value="3">Interfiere sustancialmente  </option>
+
+         </select>
+
+         <h3>ESPALDA BAJA</h3>
+
+       <fieldset>
+
+               <legend>¿Posee molestias en el espaldaBaja?</legend>
+               <input type="radio" name="ladoDolorespaldaBaja" value="1" required autofocus> Lado izquierdo  <!--  Valor de CERO para uso futuro -->
+               <input type="radio" name="ladoDolorespaldaBaja" value="2" required autofocus> Lado derecho <!--  Valor de UNO para uso futuro -->
+               <input type="radio" name="ladoDolorespaldaBaja" value="3" required autofocus> Ambos <br> <!--  Valor de DOS para uso futuro -->
+
+        </fieldset>
+        
+        <p>Los síntomas se presentan cuando:</p>
+        <select name="Seleccione cada cuanto presenta la sintomatologia en su espalda Baja" id="cuandoespaldaBaja">
+          <option value="0">-------------------</option>
+          <option value="1">Al realizar mi trabajo</option>
+          <option value="2">Todo el tiempo</option>
+          <option value="3">Al final del dia</option>
+          <option value="4">Al final de la semana </option>
+          <option value="5">En mi casa </option>
+
+        </select>
+        
+        <p>Generalmente se presentan como:</p>
+        <select name="Generalmente se presentan como: espalda Baja" id="sintomespaldaBaja">
+          <option value="0">-------------------</option>
+          <option value="1">Dolor</option>
+          <option value="2">Hormigueo</option>
+          <option value="3">Malestar </option>
+          <option value="4 ">Adormecimiento</option>
+
+        </select>
+        
+  <p>La molestia se presenta cuando efectua que tipo de movimientos:</p>
+        <select name="La molestia se presenta cuando efectua que tipo de movimientos: espalda Baja" id="molesMovimientoespaldaBaja">
+          <option value="0">-------------------</option>        
+          <option value="1">Hacia adelante:</option>
+          <option value="2">Hacia atrás:</option>
+          <option value="3">Hacia los lados:</option>
+          <option value="4">Movimientos rotativos:</option>
+
+         </select>
+         
+        <p>Con que intensidad se presentan los dolores o molestias ( Siendo 0 como lo más minimo y 10 como lo máximo )  </p>
+        <div class="slidecontainer">
+        <input type="range" min="0" max="10" value="1" class="slider" name="IntensidadespaldaBaja" id="myRangeespaldaBaja">
+        <p>Valor: <span id="demoespaldaBaja"></span></p>
+
+        </div>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o la molestia o dolor Aumenta?</legend>
+          <input type="radio" name="actividadAumespaldaBaja" value="1" onchange="makeVisibleespaldaBaja1();" required autofocus> si
+          <input type="radio" name="actividadAumespaldaBaja" value="2" onchange="makeInvisibleespaldaBaja1();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadespaldaBaja1"><br>
+
+        </fieldset>
+        
+        <fieldset>
+          <legend>¿Siente que si realiza alguna otra actividad o labor la molestia o dolor  Disminuye?</legend>
+          <input type="radio" name="actividadDismespaldaBaja" value="1" onchange="makeVisibleespaldaBaja2();" required autofocus> si
+          <input type="radio" name="actividadDismespaldaBaja" value="2" onchange="makeInvisibleespaldaBaja2();" required autofocus> no
+          <input class="input" type="text" placeholder="¿ Cual ?" required autofocus disabled =true id="ActividadespaldaBaja2"><br>
+
+        </fieldset>
+        
+        
+         
+         <p>Cuanto dura aproximadamente cada episodio de molestia o dolor</p>
+         
+        <select name="Cuanto dura aproximadamente cada episodio de molestia o dolor : espalda Baja" id="duracionespaldaBaja">
+          <option value="0">-------------------</option>
+          <option value="1">menos de 2 horas</option>
+          <option value="2">mas de 2 horas</option>
+          <option value="3">Es intermitente durante el dia</option>
+          <option value="4">Es constante durante todo el dia</option>
+
+         </select>
+         
+          <p>Si usted experimentó dolor, Cuánto interfirió con su habilidad para trabajar?  </p>
+         <select name="Cuánto interfirió con su habilidad para trabajar : espalda Baja" id="interfereciaespaldaBaja">
+          <option value="0">-------------------</option>
+          <option value="1">No, en absoluto </option>
+          <option value="2">Poca interferencia</option>
+          <option value="3">Interfiere sustancialmente  </option>
+
+         </select>
+         
+    <button  type="submit" >Guardar</button>
+         
+    <!--<a  href="/inicio/musculoEsqueletico/testME/iniciarCuelloPregTestME"><input type='button' name='button' value='Guardar' onclick="guardarDatoshombro()" id="btnSi"></a>-->
+
+     </form>
+   </div>
+
+   
+<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+
+var sliderCuello = document.getElementById("myRangeCuello");
+var outputCuello = document.getElementById("demoCuello");
+outputCuello.innerHTML = sliderCuello.value;
+   
+  sliderCuello.oninput = function() {
+   outputCuello.innerHTML = this.value;
+   }
+
+var sliderCodo = document.getElementById("myRangeCodo");
+  var outputCodo = document.getElementById("demoCodo");
+  outputCodo.innerHTML = sliderCodo.value;
+   
+  sliderCodo.oninput = function() {
+   outputCodo.innerHTML = this.value;
+  }
+
+var sliderMano = document.getElementById("myRangeMano");
+  var outputMano = document.getElementById("demoMano");
+  outputMano.innerHTML = sliderMano.value;
+   
+  sliderMano.oninput = function() {
+   outputMano.innerHTML = this.value;
+  }
+var sliderEspaldaDorsal = document.getElementById("myRangeespaldaDorsal");
+  var outputEspaldaDorsal = document.getElementById("demoespaldaDorsal");
+  outputEspaldaDorsal.innerHTML = sliderEspaldaDorsal.value;
+   
+  sliderEspaldaDorsal.oninput = function() {
+   outputEspaldaDorsal.innerHTML = this.value;
+  }
+
+var sliderEspaldaBaja = document.getElementById("myRangeespaldaBaja");
+  var outputEspaldaBaja = document.getElementById("demoespaldaBaja");
+  outputEspaldaBaja.innerHTML = sliderEspaldaBaja.value;
+  
+  sliderEspaldaBaja.oninput = function() {
+  outputEspaldaBaja.innerHTML = this.value;
+  }
+</script>
+  </body>
+
+    {% endblock %}

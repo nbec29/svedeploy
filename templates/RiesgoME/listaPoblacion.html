@@ -1,0 +1,61 @@
+{% extends "base_generic.html" %}
+
+   {% block content %}
+        <h1 align="center">
+            Lista de personas
+        </h1>
+<table align="center" border="1">
+<thead>
+            <tr>
+                <td align="center">Correo</td>
+                 <td align="center">Riesgo</td>
+                <td align="center">Acciones</td>
+            </tr>
+
+        </thead>
+        <tbody>
+
+        {% if poblaciones %}
+        {% for poblacion in poblaciones %}
+            <tr>
+                <td>&nbsp; {{poblacion.correo}} &nbsp;</td>
+                <td>&nbsp; {{poblacion.Riesgo.nombre}} &nbsp;</td>
+                <td>&nbsp; <a class="btn btn-primary"  onclick="redirigirCorreoEditar({{poblacion.identificacion}} )">Editar</a> <a  class="btn btn-danger"  onclick="redirigirCorreoEliminar({{poblacion.identificacion}} )">Eliminar</a>&nbsp;</td>
+
+            </tr>
+
+
+        {% endfor %}
+
+
+
+
+            <script type="text/javascript">
+                  function redirigirCorreoEditar(emailUser){
+                   var emailUser1 = emailUser;
+                  location.href = "/inicio/administrarSVE/poblacionSVE/editar/" + emailUser;
+                   }
+
+                   function redirigirCorreoEliminar(emailUser){
+                   var emailUser1 = emailUser;
+                  location.href = "/inicio/administrarSVE/poblacionSVE/eliminar/" + emailUser;
+                   }
+
+
+            </script>
+
+        {% else %}
+
+        <h1>
+            No hay personas registradas
+        </h1>
+        {% endif %}
+        </tbody>
+    </table>
+<br>
+<div align="center">
+        <a href="/inicio/administrarSVE/poblacionSVE" class="enlace">Volver</a> &nbsp;
+        <a href="/inicio/administrarSVE/poblacionSVE/lista/correos" class="enlace">Enviar correos</a>
+</div>
+<br>
+{% endblock %}
