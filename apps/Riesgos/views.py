@@ -12,6 +12,8 @@ import pandas as pd
 from keras.models import load_model
 from apps.Riesgos.redNeuronalME.Cargar_Modelo import predic
 import csv
+import unittest
+from unittest import TestCase
 
 import os
 
@@ -668,4 +670,3 @@ def enviarCorreoDiagnostico(prediccion, perfilDemografico, user):
          datos,
         'sveuniquindio@gmail.com',
         ['sveuniquindio@gmail.com'],)
-
