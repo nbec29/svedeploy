@@ -17,12 +17,5 @@
   "name": "svedeploy",
   "scripts": {
   },
-  "stack": "heroku-18",
-  "environments": {
-    "test": {
-      "scripts": {
-        "test": "assert test"
-      }
-    }
-  }
+  "stack": "heroku-18"
 }
