@@ -12,6 +12,8 @@ import pandas as pd
 from keras.models import load_model
 from apps.Riesgos.redNeuronalME.Cargar_Modelo import predic
 import csv
+import unittest
+from unittest import TestCase
 
 import os
 
@@ -298,6 +300,7 @@ def poblacionEliminar(request, identificacion):
     Poblacion = poblacion.objects.get(identificacion=identificacion)
     if request.method == 'POST':
         Poblacion.delete()
+    TestCase.assertEquals(identificacion, Poblacion.identificacion)
     return render(request, 'RiesgoME/eliminarPoblacionME.html', {'poblacion': Poblacion})
 
 
@@ -669,3 +672,7 @@ def enviarCorreoDiagnostico(prediccion, perfilDemografico, user):
         'sveuniquindio@gmail.com',
         ['sveuniquindio@gmail.com'],)
 
+class Testing (unittest.TestCase):
+
+    def test1_eliminar(self):
+        self.assertIs
