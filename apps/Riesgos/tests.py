@@ -1,14 +1,5 @@
-from django.test import TestCase, Client
-from django.urls import reverse
+from nose.tools import assert_true
+import requests
 
-from apps.Riesgos.views import poblacionEliminar
-
-class Tests(TestCase):
-    def setUp(self):
-        self.client = Client()
-
-    def testEliminar(self):
-        url = reverse('login')
-        response = self.client.get(url)
-        self.assertContains(response, 'Iniciar Sesión')
-# Create your tests here.
+def test_numbers_3_4():
+    assert 4*3 == 12
