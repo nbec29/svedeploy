@@ -1,4 +1,4 @@
-from nose.tools import assert_true
+import nose.tools
 import requests
 
 def test_numbers_3_4():
