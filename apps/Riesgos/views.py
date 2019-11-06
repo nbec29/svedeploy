@@ -12,7 +12,7 @@ import pandas as pd
 from keras.models import load_model
 from apps.Riesgos.redNeuronalME.Cargar_Modelo import predic
 import csv
-
+import os.path as path
 from unittest import TestCase
 
 import os
@@ -241,9 +241,10 @@ def normalizarDatos(entradas):
 
     archivo = open('Eprediccion.csv', 'w')
 
+
     with archivo:
-        writer = csv.writer(archivo, delimiter=',')
-        writer.writerows(entradas1)
+         writer = csv.writer(archivo, delimiter=',')
+         writer.writerows(entradas1)
 
     return True
 

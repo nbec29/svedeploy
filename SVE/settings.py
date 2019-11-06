@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.Registro',
     'apps.Riesgos',
     'apps.Enfermedades',
+
 ]
 
 MIDDLEWARE = [
@@ -83,21 +84,20 @@ WSGI_APPLICATION = 'SVE.wsgi.application'
 
 #DATABASES = {
  #   'default': {
-  #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-   #     'NAME':  'sve',
-    #    'USER': 'postgres',
-     #   'PASSWORD': '12345',
-      #  'HOST': 'localhost',
-       # 'PORT': 5432,
-   # }
+  #     'NAME':  'sve',
+   #     'USER': 'postgres',
+    #    'PASSWORD': '12345',
+     #   'HOST': 'localhost',
+      #  'PORT': 5432,
+    #}
 #}
 
 import dj_database_url
 from decouple import config
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+   'default': dj_database_url.config(
+      default=config('DATABASE_URL')
     )
 }
 
