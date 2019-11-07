@@ -10,13 +10,10 @@ from django.contrib.auth.models import Group
 
 # Create your views here.
 def registro(request):
-<<<<<<< HEAD
     return render(request, 'registro.html')
-=======
     print('RegistroUsuario')
     print(request.POST)
     return render(request,'registro.html')
->>>>>>> master
 
 
 def login(request):
@@ -35,11 +32,3 @@ class PersonaCreate(CreateView):
         g = Group.objects.get(name = 'Usuarios')
         g.user_set.add(usuario)
         return reverse('login')
-<<<<<<< HEAD
-=======
-
-    
-
-
-
->>>>>>> master
