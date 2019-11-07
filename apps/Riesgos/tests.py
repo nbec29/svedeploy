@@ -44,8 +44,3 @@ def test_get_individual_request_404():
     response = requests.get('%s/request/an_incorrect_id' % BASE_URL)
     assert_true(response.status_code == 404)
 from django.test import SimpleTestCase
-
-class HomePageTests(SimpleTestCase):
-    def test_home(self):
-        response = self.client.get('http://127.0.0.1:8000/login')
-        self.assertEquals(response.status_code, 200)
