@@ -29,7 +29,6 @@
 
                     <ul class="barraNav">
                      <li> <a href="/inicio">Inicio</a></li>
-                        {% if perms.User.view%}
                      {% if perms.poblacion.add_poblacion %}
                      <li> <a href="/inicio/administrarSVE">Administrar</a></li>
                         {%endif%}
