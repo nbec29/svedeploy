@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'apps.Registro',
     'apps.Riesgos',
     'apps.Enfermedades',
-
 ]
 
 MIDDLEWARE = [
@@ -84,20 +83,21 @@ WSGI_APPLICATION = 'SVE.wsgi.application'
 
 #DATABASES = {
  #   'default': {
-  #     'NAME':  'sve',
-   #     'USER': 'postgres',
-    #    'PASSWORD': '12345',
-     #   'HOST': 'localhost',
-      #  'PORT': 5432,
-    #}
+  #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+   #     'NAME':  'sve',
+    #    'USER': 'postgres',
+     #   'PASSWORD': '12345',
+      #  'HOST': 'localhost',
+       # 'PORT': 5432,
+   # }
 #}
 
 import dj_database_url
 from decouple import config
 
 DATABASES = {
-   'default': dj_database_url.config(
-      default=config('DATABASE_URL')
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
     )
 }
 
@@ -139,9 +139,6 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'imageEnfermedad')
-MEDIA_URL = '/imageEnfermedad/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
