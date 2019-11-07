@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^logout/', logout_then_login, name='logout'),
 
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] 
 
 
 if settings.DEBUG:
