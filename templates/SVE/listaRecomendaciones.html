@@ -5,7 +5,7 @@
 
     {% endblock %}
    {% block content %}
-                     {% if perms.sabias que.add_sabias que %}
+                     {% if perms.poblacion.add_poblacion %}
 
         <h1 align="center">
             Lista de enfermedades
@@ -17,7 +17,7 @@
                 <td align="center">Nombre</td>
                 <td align="center">Descripción</td>
                 <td align="center">Demostración</td>
-                 {% if perms.sabias que.change_sabias que and perms.sabias que.delete_sabias que%}
+                 {% if perms.poblacion.change_poblacion and perms.poblacion.delete_poblacion%}
                 <td align="center">Acciones</td>
                 {%endif%}
             </tr>
