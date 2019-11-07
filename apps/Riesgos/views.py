@@ -703,8 +703,6 @@ def aggEnfermedad(request):
         form = EnfermedadForm()
     return render(request, 'SVE/aggEnfermedad.html', {'form': form, 'sabiasQues': sabiasQue})
 
-    return render(request, 'SVE/aggDescripcionEnfer.html', {'enfermedades': enfermedad})
-
 
 def aggDefEnfermedad(request):
     sabiasQue = filtroSabiasQue
