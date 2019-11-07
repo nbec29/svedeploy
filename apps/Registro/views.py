@@ -19,8 +19,6 @@ class PersonaCreate(CreateView):
     model = User
     form_class = RegistroUsuario
     template_name = 'registro.html'
-    g = Group.objects.get(name = 'Usuarios')
-    g.user_set.add(RegistroUsuario)
 
     def get_success_url(self):
         return reverse('login')
