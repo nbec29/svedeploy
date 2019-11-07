@@ -43,4 +43,3 @@ def test_get_editar():
 def test_get_individual_request_404():
     response = requests.get('%s/request/an_incorrect_id' % BASE_URL)
     assert_true(response.status_code == 404)
-from django.test import SimpleTestCase
