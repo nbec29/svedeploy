@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %}
+{% block sabias %}
+      
+           
+
+    {% endblock %}
+   {% block content %}
+        <h1 align="center">
+            Lista de enfermedades
+        </h1>
+<table align="center" border="1">
+<thead>
+            <tr>
+                <td align="center">Riesgo</td>
+                <td align="center">Nombre</td>
+                <td align="center">Descripción</td>
+                <td align="center">Demostración</td>
+                <td align="center">Acciones</td>
+            </tr>
+
+        </thead>
+        <tbody>
+
+        {% if sabiasQues %}
+        {% for sabiasQue in sabiasQues %}
+            <tr>
+                <td>&nbsp; {{sabiasQue.idRiesgo}} &nbsp;</td>
+                <td>&nbsp; {{sabiasQue.nombre}} &nbsp;</td>
+                <td>&nbsp; {{sabiasQue.descripcion}} &nbsp;</td>
+                <td>&nbsp;<figure><img src="/imageEnfermedad/{{sabiasQue.demostracion}}" width="200" height="200"> </figure> &nbsp;</td>
+                <td>&nbsp; <a class="btn btn-primary"  onclick="redirigirEnfermedadEditar({{sabiasQue.id}} )">Editar</a> <a  class="btn btn-danger"  onclick="redirigirEnfermedadEliminar({{sabiasQue.id}} )">Eliminar</a>&nbsp;</td>
+
+            </tr>
+
+
+        {% endfor %}
+
+
+
+
+            <script type="text/javascript">
+
+               
+
+                  function redirigirEnfermedadEditar(id){
+                   var id1 = id;
+                  location.href = "/inicio/administrarSVE/recomendaciones/Editar/" + id1;
+                   }
+
+                   function redirigirEnfermedadEliminar(id){
+                   var id1 = id;
+                  location.href = "/inicio/administrarSVE/recomendaciones/eliminar/" + id1;
+                   }
+
+
+            </script>
+
+        {% else %}
+
+        <h1>
+            No hay personas registradas
+        </h1>
+        {% endif %}
+        </tbody>
+    </table>
+<br>
+<div align="center">
+        <a href="/inicio/administrarSVE/poblacionSVE" class="enlace">Volver</a> &nbsp;
+        
+</div>
+<br>
+{% endblock %}

@@ -162,17 +162,29 @@ class EspaldaDorsalME(models.Model):
     interfirioTrabajo6= models.IntegerField(null=True)
 
 class SabiasQue(models.Model):
-     id = models.CharField(primary_key=True, max_length=10)
+     id = models.AutoField(primary_key=True)
      idRiesgo = models.ForeignKey(Riesgo, null=False, on_delete=models.CASCADE)
      nombre = models.CharField(max_length=100, null=False)
      descripcion = models.CharField(max_length=500, null=False)
-     demostracion = models.CharField(max_length=500, null=False)
+     demostracion = models.ImageField(upload_to='demostraciones', null=True)
 
 class PosibleEnfermedad(models.Model):
-    id = models.CharField(primary_key=True, max_length=10)
+    id = models.AutoField(primary_key=True)
     idRiesgo = models.ForeignKey(Riesgo, null=False, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100, null=False)
     descripcion = models.CharField(max_length=400, null=False)
+
+    def __str__(self):
+        return '{}'.format(self.nombre )
+
+class DefinicionEnfermedad(models.Model):
+    id = models.AutoField(primary_key=True)
+    enfermedad=  models.ForeignKey(PosibleEnfermedad, null=False, on_delete=models.CASCADE)
+    descripcion1 = models.CharField( null= False, max_length=400)
+    imagen = models.ImageField(upload_to='photo', null=True)
+
+  
+
 
 class poblacion(models.Model):
     identificacion = models.AutoField(primary_key=True)

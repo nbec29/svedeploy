@@ -1,0 +1,51 @@
+{% extends "base_generic.html" %}
+
+  {% block title %} Agregar Enfermedad {% endblock%}
+    {% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+       
+        <input type="submit" value="Grabar" class="default" name="_save">
+</form>
+
+<body>
+    <div align="center">
+            <h1>Administrador Enfermedades</h1>
+                     <br></br>
+    </div>
+    <div id="listageneral">
+        <ul class="cards-list">
+           <li class="ci-4 cards-item">
+            <div class="card">
+             <a href="/inicio/musculoEsqueletico/enfermedadesME" class="card-container" rel="keep-params">
+                <div class="card-icon card-icon-1">
+                           <span class="icono fa fa-bell"></span>
+                </div>
+               <div class="card-title-container">
+                   <h3 class="card-title">
+                       Ver Lista de enfermedades
+                   </h3>
+               </div>
+             </a>
+            </div>
+          </li>
+           <li class="ci-4 cards-item">
+             <div class="card">
+                <a href="/inicio/administrarSVE/aggDefEnfermedades" class="card-container" rel="keep-params">
+                    <div class="card-icon card-icon-4">
+                        <i class="icono fa fa-bar-chart"></i>
+                    </div>
+                    <div class="card-title-container">
+                        <h3 class="card-title">Agregar Descripciones A Enfermedades</h3>
+                    </div>
+                </a>
+             </div>
+           </li>
+        </ul>
+    </div>
+</body>
+
+    {% endblock %}
