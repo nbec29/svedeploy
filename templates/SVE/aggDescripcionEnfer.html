@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+  {% block title %} Agregar Enfermedad {% endblock%}
+    {% block content %}
+
+    <form method="post" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button  type="submit" >Guardar</button>
+    
+   
+</form>
+
+    {% endblock %}

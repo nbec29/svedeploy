@@ -1,10 +1,69 @@
 {% extends "base_generic.html" %}
- {% block content %}
-        <body>
 
-        contenido de LAS ENFERMEDADES  musculo esqueletico
-        <a href="">Lista de enfermedades</a>
+   {% block content %}
+        <h1 align="center">
+            Lista de enfermedades
+        </h1>
+<table align="center" border="1">
+<thead>
+            <tr>
+                    <td align="center">Ingresar</td>
+                <td align="center">Nombre</td>
+                 <td align="center">Descripcion</td>
+            <td align="center">Acciones</td>
+            </tr>
+
+        </thead>
+        <tbody>
+
+        {% if posibleEnfermedades %}
+        {% for posibleEnfermedad in posibleEnfermedades %}
+            <tr>
+                <td>&nbsp; <a class="btn btn-primary"  onclick="verInformacionEnf({{posibleEnfermedad.id}} )">{{posibleEnfermedad.nombre}}</a> &nbsp;</td>
+                <td>&nbsp; {{posibleEnfermedad.nombre}} &nbsp;</td>
+                <td>&nbsp; {{posibleEnfermedad.descripcion}} &nbsp;</td>
+                <td>&nbsp; <a class="btn btn-primary"  onclick="redirigirEnfermedadEditar({{posibleEnfermedad.id}} )">Editar</a> <a  class="btn btn-danger"  onclick="redirigirEnfermedadEliminar({{posibleEnfermedad.id}} )">Eliminar</a>&nbsp;</td>
+
+            </tr>
 
 
-        </body>
-    {% endblock %}
+        {% endfor %}
+
+
+
+
+            <script type="text/javascript">
+
+                function verInformacionEnf(id){
+                   var id1 = id;
+                  location.href = "/inicio/administrarSVE/aggenfermedad/informacionEnf/" + id1;
+                   }
+
+                  function redirigirEnfermedadEditar(id){
+                   var id1 = id;
+                  location.href = "/inicio/administrarSVE/aggenfermedad/editar/" + id1;
+                   }
+
+                   function redirigirEnfermedadEliminar(id){
+                   var id1 = id;
+                  location.href = "/inicio/administrarSVE/aggenfermedad/eliminar/" + id1;
+                   }
+
+
+            </script>
+
+        {% else %}
+
+        <h1>
+            No hay personas registradas
+        </h1>
+        {% endif %}
+        </tbody>
+    </table>
+<br>
+<div align="center">
+        <a href="/inicio/administrarSVE/poblacionSVE" class="enlace">Volver</a> &nbsp;
+        
+</div>
+<br>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.forms import CheckboxSelectMultiple
 
 from apps.Riesgos.models import  poblacion, PerfilDemografico, HombroME,TestME, CuelloME,ManoME,CodoME,EspaldaDorsalME,\
-    EspaldaBajaME
+    EspaldaBajaME, PosibleEnfermedad,DefinicionEnfermedad,SabiasQue
 from django import forms
 from django.contrib.auth import  get_user
 from django.contrib.auth.models import User
@@ -10,6 +10,88 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 
+
+class EnfermedadForm(forms.ModelForm):
+
+    class Meta:
+        model = PosibleEnfermedad
+
+        fields = [
+            
+            'idRiesgo',
+            'nombre',
+            'descripcion',
+
+
+        ]
+        labels ={
+           
+            'idRiesgo': 'Riesgo',
+            'nombre':'nombre',
+            'descripcion':'descripción',
+        }
+        widgets = {
+
+            
+            'idRiesgo':forms.Select(attrs={'class': 'form-control'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+class DescripcionEnfermedadForm(forms.ModelForm):
+
+    class Meta:
+        model = DefinicionEnfermedad
+
+        fields = [
+            'enfermedad',
+            'descripcion1',
+            'imagen',
+        ]
+        labels ={
+            'enfermedad': 'Seleccione la enfermedad',
+            'descripcion1': 'Ingrese una descripción',
+            'imagen':'Ingrese una imagen', 
+        }
+        widgets = {
+
+            
+            'enfermedad':forms.Select(attrs={'class': 'form-control'}),
+            'descripcion1': forms.TextInput(attrs={'class': 'form-control'}),
+            
+        }
+
+
+class DescripcionRecomendacionesForm(forms.ModelForm):
+
+    class Meta:
+        model = SabiasQue
+
+        fields = [
+            'idRiesgo',
+            'nombre',
+            'descripcion',
+            'demostracion',
+        ]
+        labels ={
+            'idRiesgo': 'Seleccione el riesgo al que pertenece',
+            'nombre': 'Ingrese un nombre',
+            'descripcion':'Ingrese una descripción', 
+            'demostracion':'Ingrese una imagen',
+        }
+        widgets = {
+
+            'idRiesgo':forms.Select(attrs={'class': 'form-control'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
+            
+            
+        }
+        
+        
+        
+        
+       
 
 class PoblacionForm(forms.ModelForm):
 

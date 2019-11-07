@@ -1,0 +1,63 @@
+{% extends "base_generic.html" %}
+
+   {% block content %}
+        <h1 align="center">
+            Lista de personas
+        </h1>
+<table align="center" border="1">
+<thead>
+            <tr>
+                <td align="center">descripción</td>
+                <td align="center">imagen relacionada</td>
+                <td align="center">acciones</td>
+            </tr>
+
+        </thead>
+        <tbody>
+
+        {% if definicionEnfermedades %}
+        {% for definicionEnfermedad in definicionEnfermedades %}
+            <tr>
+                <td>&nbsp; {{definicionEnfermedad.descripcion1}} &nbsp;</td>
+                <td>&nbsp;<figure><img src="/imageEnfermedad/{{definicionEnfermedad.imagen}}" width="200" height="200"> </figure> &nbsp;</td>
+                <td>&nbsp; <a class="btn btn-primary"  onclick="redirigirEnfeEditar({{definicionEnfermedad.id}} )">Editar</a> <a  class="btn btn-danger"  onclick="redirigirEnferEliminar({{definicionEnfermedad.id}} )">Eliminar</a>&nbsp;</td>
+
+            </tr>
+
+
+        {% endfor %}
+
+        
+
+
+
+
+            <script type="text/javascript">
+                  function redirigirEnfeEditar(defEnf){
+                   var defEnf1 = defEnf;
+                  location.href = "/inicio/administrarSVE/aggenfermedad/defEnfMEEdit/" + defEnf1;
+                   }
+
+                   function redirigirEnferEliminar(defEnf){
+                   var defEnf1 = defEnf;
+                  location.href = "/inicio/administrarSVE/aggenfermedad/defEnfMEEliminar/" + defEnf1;
+                   }
+
+
+            </script>
+
+        {% else %}
+
+        <h1>
+            No hay personas registradas
+        </h1>
+        {% endif %}
+        </tbody>
+    </table>
+<br>
+<div align="center">
+        <a href="/inicio/administrarSVE/poblacionSVE" class="enlace">Volver</a> &nbsp;
+        <a href="/inicio/administrarSVE/poblacionSVE/lista/correos" class="enlace">Enviar correos</a>
+</div>
+<br>
+{% endblock %}

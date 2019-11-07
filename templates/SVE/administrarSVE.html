@@ -1,6 +1,8 @@
 {% extends "base_generic.html" %}
 
+
 {% block content %}
+{% if perms.poblacion.add_poblacion and perms.enfermedad.add_enfermedad %}
 <body>
     <div align="center">
             <h1>Administrador del S.V.E</h1>
@@ -10,7 +12,7 @@
         <ul class="cards-list">
            <li class="ci-4 cards-item">
              <div class="card">
-              <a href="/inicio/notificaciones" class="card-container" rel="keep-params">
+              <a href="#" class="card-container" rel="keep-params">
                  <div class="card-icon card-icon-1">
                             <span class="icono fa fa-bell"></span>
                  </div>
@@ -35,6 +37,21 @@
               </a>
              </div>
            </li>
+
+           <li class="ci-4 cards-item">
+            <div class="card">
+             <a href="/inicio/administrarSVE/enfermedades" class="card-container" rel="keep-params">
+                <div class="card-icon card-icon-1">
+                           <span class="icono fa fa-bell"></span>
+                </div>
+               <div class="card-title-container">
+                   <h3 class="card-title">
+                       Enfermedades
+                   </h3>
+               </div>
+             </a>
+            </div>
+          </li>
            <li class="ci-4 cards-item">
              <div class="card">
                 <a href="#" class="card-container" rel="keep-params">
@@ -47,7 +64,25 @@
                 </a>
              </div>
            </li>
+        </li>
+        <li class="ci-4 cards-item">
+          <div class="card">
+             <a href="/inicio/administrarSVE/aggRecomendaciones" class="card-container" rel="keep-params">
+                 <div class="card-icon card-icon-4">
+                     <i class="icono fa fa-bar-chart"></i>
+                 </div>
+                 <div class="card-title-container">
+                     <h3 class="card-title">Recomendaciones</h3>
+                 </div>
+             </a>
+          </div>
+        </li>
         </ul>
     </div>
 </body>
+
+{% else %}
+no tiene permisos para ver esta pagina
+{%endif%}
 {% endblock %}
+

@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+  {% block title %} Agregar Enfermedad {% endblock%}
+    {% block content %}
+
+    <form method="post" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button  type="submit" >Guardar</button>
+    
+   
+</form>
+
+<body>
+    <div align="center">
+            <h1>Administrador Enfermedades</h1>
+                     <br></br>
+    </div>
+    <div id="listageneral">
+        <ul class="cards-list">
+           <li class="ci-4 cards-item">
+            <div class="card">
+             <a href="/inicio/administrarSVE/listaRecomendaciones" class="card-container" rel="keep-params">
+                <div class="card-icon card-icon-1">
+                           <span class="icono fa fa-bell"></span>
+                </div>
+               <div class="card-title-container">
+                   <h3 class="card-title">
+                       Ver Lista de recomendaciones
+                   </h3>
+               </div>
+             </a>
+            </div>
+          </li>
+        </ul>
+    </div>
+</body>
+
+    {% endblock %}

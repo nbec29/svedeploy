@@ -17,20 +17,25 @@
         <header>
 
             <img src="{%static 'imagenes/logouq.png' %}" alt="error">
-
+           
 
         </header>
 
 
     {% endblock %}
+
 {% block nav %}
   <nav>
 
                     <ul class="barraNav">
                      <li> <a href="/inicio">Inicio</a></li>
+<<<<<<< HEAD
                         {% if perms.User.view%}
+=======
+                     {% if perms.poblacion.add_poblacion %}
+>>>>>>> master
                      <li> <a href="/inicio/administrarSVE">Administrar</a></li>
-
+                        {%endif%}
                       <li class="Riesgo">
                         <a href="javascript:void(0)" class="dropbtn">Riesgo</a>
 
@@ -41,8 +46,9 @@
                         </div>
                       </li>
 
-
+                      {% if perms.poblacion.add_poblacion %}
                       <li><a href="/inicio/notificaciones"><div valign="top">Notificaciones <svg height="20" width="20" style="position:absolute; z-index:1;">
+                            {%endif%}
                                 <circle cx="5" cy="5" r="3" stroke="red" stroke-width="3" fill="red" />
                         </svg></div></a></li>
 
@@ -53,8 +59,18 @@
 
 
             </nav>
-{% endblock %}
+    {% endblock %}
+    {% block sabias %}
+        {%if sabiasQues%}
+           
+                {{sabiasQues.nombre}}
+                {{sabiasQues.demostracion}}"
+                <figure><img src="/imageEnfermedad/{{sabiasQues.demostracion}}" width="200" height="200"> </figure>
+           
+        {% endif %}
+           
 
+    {% endblock %}
 
     {% block content %}
         <body>
