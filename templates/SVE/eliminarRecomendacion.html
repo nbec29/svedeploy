@@ -1,6 +1,8 @@
 {% extends "base_generic.html" %}
 
  {% block content %}
+ {% if perms.sabias que.delete_sabias que %}
+
 <form method="post" align="center">
             <div align="center">
 
@@ -16,4 +18,7 @@
 
 
         </form>
+{% else %}
+no tiene permisos para ver esta pagina
+{%endif%}
    {% endblock %}

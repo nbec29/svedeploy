@@ -1,6 +1,8 @@
 {% extends "base_generic.html" %}
 
  {% block content %}
+                     {% if perms.poblacion.add_poblacion %}
+
         <body>
         <script type="text/javascript">
                   function redirigirALista(){
@@ -88,4 +90,7 @@
             <br></br>
 
         </body>
+{% else %}
+no tiene permisos para ver esta pagina
+{%endif%}
     {% endblock %}

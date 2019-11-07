@@ -5,6 +5,8 @@
 
     {% endblock %}
    {% block content %}
+                     {% if perms.sabias que.add_sabias que %}
+
         <h1 align="center">
             Lista de enfermedades
         </h1>
@@ -15,7 +17,9 @@
                 <td align="center">Nombre</td>
                 <td align="center">Descripción</td>
                 <td align="center">Demostración</td>
+                 {% if perms.sabias que.change_sabias que and perms.sabias que.delete_sabias que%}
                 <td align="center">Acciones</td>
+                {%endif%}
             </tr>
 
         </thead>
@@ -69,4 +73,7 @@
         
 </div>
 <br>
+{% else %}
+no tiene permisos para ver esta pagina
+{%endif%}
 {% endblock %}

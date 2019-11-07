@@ -2,6 +2,7 @@
 
   {% block title %} Agregar Enfermedad {% endblock%}
     {% block content %}
+                     {% if perms.enfermedad.add_enfermedad %}
 
     <body>
         <div align="center">
@@ -27,5 +28,5 @@
             </ul>
         </div>
     </body>
-
+    {% endif %}
     {% endblock %}

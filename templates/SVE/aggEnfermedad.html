@@ -2,6 +2,7 @@
 
   {% block title %} Agregar Enfermedad {% endblock%}
     {% block content %}
+                     {% if perms.enfermedad.add_enfermedad %}
 
     <form method="post">
         {% csrf_token %}
@@ -47,5 +48,7 @@
         </ul>
     </div>
 </body>
-
+{% else %}
+no tiene permisos para ver esta pagina
+{%endif%}
     {% endblock %}

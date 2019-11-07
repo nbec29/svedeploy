@@ -2,6 +2,7 @@
 
   {% block title %} Agregar Enfermedad {% endblock%}
     {% block content %}
+                     {% if perms.sabias que.add_sabias que %}
 
     <form method="post" enctype="multipart/form-data">
 
@@ -36,5 +37,7 @@
         </ul>
     </div>
 </body>
-
+    {% else %}
+no tiene permisos para ver esta pagina
+{%endif%}
     {% endblock %}
