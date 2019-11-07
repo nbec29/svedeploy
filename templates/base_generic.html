@@ -1,4 +1,4 @@
-{% load staticfiles%}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +28,7 @@
 
                     <ul class="barraNav">
                      <li> <a href="/inicio">Inicio</a></li>
+                        {% if perms.User.view%}
                      <li> <a href="/inicio/administrarSVE">Administrar</a></li>
 
                       <li class="Riesgo">
