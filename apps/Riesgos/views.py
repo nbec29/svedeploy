@@ -821,7 +821,7 @@ def recomendacionesEliminar(request, identificacion):
     if request.method == 'POST':
         sabiasQue.delete()
         return HttpResponseRedirect(reverse('listaRecomendaciones'))
-    return render(request, 'RiesgoME/eliminarDefEnfer.html', {'sabiasQue': sabiasQue})
+    return render(request, 'RiesgoME/eliminarDefEnfer.html', {'sabiasQues': sabiasQue})
 
 
 
