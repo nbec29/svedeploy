@@ -13,7 +13,6 @@ from apps.Riesgos.redNeuronalME.Cargar_Modelo import predic
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 import csv
-from PIL import Image
 import os
 
 
