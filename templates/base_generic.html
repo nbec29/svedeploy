@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css">
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilosV3.css' %}">
     <title> {% block title %}Base{% endblock%} </title>
 
 </head>
@@ -15,9 +15,13 @@
     {% block header %}
 
         <header>
-
+            <div align="center">
             <img src="{%static 'imagenes/logouq.png' %}" alt="error">
-           
+                </div>
+
+
+
+
 
         </header>
 
@@ -57,19 +61,27 @@
             </nav>
     {% endblock %}
     {% block sabias %}
-        {%if sabiasQues %}
-           
-                {{sabiasQues.nombre}}
-                {{sabiasQues.demostracion}}"
-                <figure><img src="/imageEnfermedad/{{sabiasQues.demostracion}}" width="200" height="200"> </figure>
-           
-        {% endif %}
-           
 
+   {%if sabiasQues%}
+        <div class="oval-thought">
+                    <table  class="tablaSabias" height="50  " width="100%" >
+                <tr align="center"><td  colspan="3" height="10"><h1 align="center">&nbsp;&nbsp;&nbsp;Sabias que...</h1></td></tr>
+                <tr>
+                <td align="center" valign="top">&nbsp;&nbsp;&nbsp;{{sabiasQues.nombre}}</td>
+                <td align="left "valign="top">{{sabiasQues.descripcion}}</td>
+                <td valign="top"><figure>&nbsp;&nbsp;&nbsp;<img class="imagenDesc"src="/imageEnfermedad/{{sabiasQues.demostracion}}" width="200" height="200"> &nbsp;&nbsp;&nbsp;</figure><br></td>
+                </tr>
+                </table>
+</div>
+        {% endif %}
     {% endblock %}
 
     {% block content %}
         <body>
+
+
+
+
 
 
         </body>

@@ -7,24 +7,26 @@
 
 
 <h1 align="center">
-        Lista de Test
+        Lista de Tests
     </h1>
 <table align="center" border="1">
+    {%if perfilDemograficos%}
 <thead>
         <tr>
             <td align="center">Riesgo</td>
-             <td align="center">cecula</td>
-             <td align="center">nombre</td>
-             <td align="center">apellido</td>
-             <td align="center">dependencia</td>
-             <td align="center">cargo</td>
-             <td align="center">diagnóstico</td>
-             <td align="center">fecha realización</td>
+             <td align="center">Cédula</td>
+             <td align="center">Nombre</td>
+             <td align="center">Apellido</td>
+             <td align="center">Dependencia</td>
+             <td align="center">Cargo</td>
+             <td align="center">Diagnóstico</td>
+             <td align="center">Fecha de realización</td>
              
             
         </tr>
 
     </thead>
+    {%endif%}
     <tbody>
 
     {% if perfilDemograficos %}
@@ -48,18 +50,21 @@
 
     {% else %}
 
-    <h1>
-        No hay personas registradas
+    <h1 align="center">
+        No se han realizado tests.
     </h1>
     
     {% endif %}
     </tbody>
 </table>
 <br>
+<div align="center">
+        <a href="/inicio/administrarSVE" class="enlace">Volver</a> &nbsp;
 
+</div>
 <br>
 {% else %}
-no tiene permisos para ver esta pagina
+<h1 align="center">No tiene permisos para ver esta página.</h1>
 
 {%endif%}
     {% endblock %}

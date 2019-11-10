@@ -1,9 +1,7 @@
+
 from django.shortcuts import render
-from apps.Riesgos.models import poblacion, PerfilDemografico, Riesgo, HombroME, CodoME, CuelloME, ManoME, \
-    EspaldaDorsalME, EspaldaBajaME, Cargo, Dependencia, TestME, PosibleEnfermedad, DefinicionEnfermedad, SabiasQue
-from apps.Riesgos.formularios import PoblacionForm, PerfilDemograficoForm, HombroMEForm, TestMEForm, CuelloMEForm, \
-    ManoMEForm, CodoMEForm, EspaldaDorsalMEForm, EspaldaBajaMEForm, EnfermedadForm, DescripcionEnfermedadForm, \
-    DescripcionRecomendacionesForm
+from apps.Riesgos.models import poblacion,PerfilDemografico, Riesgo, HombroME,CodoME,CuelloME,ManoME,EspaldaDorsalME,EspaldaBajaME, Cargo,Dependencia, TestME, PosibleEnfermedad, DefinicionEnfermedad, SabiasQue
+from apps.Riesgos.formularios import PoblacionForm, PerfilDemograficoForm, HombroMEForm, TestMEForm,CuelloMEForm,ManoMEForm,CodoMEForm,EspaldaDorsalMEForm,EspaldaBajaMEForm,EnfermedadForm,DescripcionEnfermedadForm,DescripcionRecomendacionesForm
 from django.core.mail import send_mail
 import django_excel as excel
 import pandas as pd
@@ -13,15 +11,22 @@ from apps.Riesgos.redNeuronalME.Cargar_Modelo import predic
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 import csv
+from django.db.models import Count
+
 import os
 
 
+
+
+
+
 def normalizarDatos(entradas):
+
     print('pasa1')
     datos = entradas[0]
     print('pasa2')
 
-    lugarMolestiaHombro = (datos[0] - 1) / (3 - 1)
+    lugarMolestiaHombro = (datos[0] - 1)/ (3-1)
     molestiaSepresentaHombro = (datos[1] - 1) / (4 - 1)
     laMolestiaEsHombro = (datos[2] - 1) / (5 - 1)
     seEfectuaMolestiaHombro = (datos[3] - 1) / (2 - 1)
@@ -31,13 +36,13 @@ def normalizarDatos(entradas):
     duracionMolestiaHombro = (datos[7] - 1) / (4 - 1)
     interfirioTrabajoHombro = (datos[8] - 1) / (3 - 1)
 
-    cuellolugarMolestia = (datos[9] - 1) / (3 - 1)
+    cuellolugarMolestia = (datos[9] - 1)/ (3-1)
     cuellomolestiaSepresenta = (datos[10] - 1) / (4 - 1)
     cuellolaMolestiaEs = (datos[11] - 1) / (5 - 1)
     cuelloseEfectuaMolestia = (datos[12] - 1) / (4 - 1)
     cuellointensidadMolestia = (datos[13] - 1) / (10 - 1)
-    cuellootraActividadMolestaAu = (datos[14] - 1) / (2 - 1)
-    cuellootraActividadMolestaDis = (datos[15] - 1) / (2 - 1)
+    cuellootraActividadMolestaAu =  (datos[14] - 1) / (2 - 1)
+    cuellootraActividadMolestaDis =(datos[15] - 1) / (2 - 1)
     cuelloduracionMolestia = (datos[16] - 1) / (4 - 1)
     cuellointerfirioTrabajo = (datos[17] - 1) / (3 - 1)
 
@@ -237,11 +242,16 @@ def normalizarDatos(entradas):
 
     )
 
+
+
+
+
+
     archivo = open('Eprediccion.csv', 'w')
 
     with archivo:
-        writer = csv.writer(archivo, delimiter=',')
-        writer.writerows(entradas1)
+       writer = csv.writer(archivo, delimiter=',')
+       writer.writerows(entradas1)
 
     return True
 
@@ -253,32 +263,30 @@ def filtroSabiasQue():
         cantidad += 1
     cantidad -= 1
     cantidad = (random.randrange(cantidad))
-
+    
     sabiasQue = sabiasQue[cantidad]
     return sabiasQue
-
 
 # Create your views here.
 def inicio(request):
     sabiasQue = filtroSabiasQue
-    return render(request, 'SVE/homepage.html', {'sabiasQues': sabiasQue})
-
+    return render(request,'SVE/homepage.html',{'sabiasQues': sabiasQue})
 
 def riesgoME(request):
     sabiasQue = filtroSabiasQue
-    return render(request, 'RiesgoME/musculoEsqueletico.html', {'sabiasQues': sabiasQue})
+    return render(request,'RiesgoME/musculoEsqueletico.html',{'sabiasQues': sabiasQue})
 
+
+ 
 
 def administrarSVE(request):
     sabiasQue = filtroSabiasQue
-    return render(request, 'SVE/administrarSVE.html', {'sabiasQues': sabiasQue})
-
+    return render(request, 'SVE/administrarSVE.html',{'sabiasQues': sabiasQue})
 
 def EnviarMensaje(request):
     sabiasQue = filtroSabiasQue
 
-    return render(request, 'RiesgoME/mensajeME.html', {'sabiasQues': sabiasQue})
-
+    return render(request, 'RiesgoME/mensajeME.html',{'sabiasQues': sabiasQue})
 
 def PoblacionCreate(request):
     sabiasQue = filtroSabiasQue
@@ -288,15 +296,13 @@ def PoblacionCreate(request):
             form.save()
     else:
         form = PoblacionForm()
-    return render(request, 'SVE/poblacionSVE.html', {'form': form, 'sabiasQues': sabiasQue})
-
+    return render(request, 'SVE/poblacionSVE.html', {'form':form,'sabiasQues': sabiasQue})
 
 def Poblacionlistar(request):
     sabiasQue = filtroSabiasQue
     Poblacion = poblacion.objects.filter(Riesgo=1)
-    contexto = {'poblaciones': Poblacion, 'sabiasQues': sabiasQue}
+    contexto ={'poblaciones':Poblacion,'sabiasQues': sabiasQue}
     return render(request, 'RiesgoME/listaPoblacion.html', contexto)
-
 
 def poblacionEdit(request, identificacion):
     sabiasQue = filtroSabiasQue
@@ -304,18 +310,20 @@ def poblacionEdit(request, identificacion):
     if request.method == 'GET':
         form = PoblacionForm(instance=Poblacion)
     else:
-        form = PoblacionForm(request.POST, instance=Poblacion)
+        form = PoblacionForm(request.POST,instance=Poblacion)
         if form.is_valid():
             form.save()
-    return render(request, 'SVE/poblacionSVE.html', {'form': form, 'sabiasQues': sabiasQue})
-
+    return render(request, 'SVE/poblacionSVE.html', {'form': form,'sabiasQues': sabiasQue})
 
 def poblacionEliminar(request, identificacion):
     sabiasQue = filtroSabiasQue
     Poblacion = poblacion.objects.get(identificacion=identificacion)
     if request.method == 'POST':
         Poblacion.delete()
-    return render(request, 'RiesgoME/eliminarPoblacionME.html', {'poblacion': Poblacion, 'sabiasQues': sabiasQue})
+    return render(request, 'RiesgoME/eliminarPoblacionME.html', {'poblacion': Poblacion,'sabiasQues': sabiasQue})
+
+
+
 
 
 def poblacionEnviarCorreo(request):
@@ -323,21 +331,23 @@ def poblacionEnviarCorreo(request):
     Poblacion = poblacion.objects.filter(Riesgo=1)
     correo = []
     for correos in Poblacion:
-        correo.append(correos.correo)
+       correo.append(correos.correo)
     subject = 'Hola soy in correo de prueba'
     message = ' Correo de prueba SVE '
     email_from = 'jbarrera1235@gmail.com'
     recipient_list = correo
     send_mail(subject, message, email_from, recipient_list)
-    return render(request, 'RiesgoME/enviarCorreoME.html', {'sabiasQues': sabiasQue})
+    return render(request, 'RiesgoME/enviarCorreoME.html',{'sabiasQues': sabiasQue})
+
 
 
 def notificaciones(request):
     sabiasQue = filtroSabiasQue
     perfilDemografico = PerfilDemografico.objects.all()
-    contexto = {'perfilDemograficos': perfilDemografico, 'sabiasQues': sabiasQue}
+    contexto ={'perfilDemograficos':perfilDemografico,'sabiasQues': sabiasQue}
+    
 
-    return render(request, 'SVE/notificaciones.html', contexto)
+    return render(request, 'SVE/notificaciones.html',contexto)
 
 
 def iniciarTestMEPiloto(request):
@@ -345,13 +355,23 @@ def iniciarTestMEPiloto(request):
     if request.method == 'POST':
         test2 = None
 
-        lugarMolestiaHombro = request.POST.get('ladoDolor')
+        lugarMolestiaHombro = 0
+        if request.POST.get('ladoDolor') is not None:
+            lugarMolestiaHombro = request.POST.get('ladoDolor')
+
         molestiaSepresentaHombro = request.POST.get('Generalmente se presentan como:')
         laMolestiaEsHombro = request.POST.get('Seleccione cada cuanto presenta la sintomatologia en su hombro')
         seEfectuaMolestiaHombro = request.POST.get('La molestia se presenta cuando efectua que tipo de movimientos:')
         intensidadMolestiaHombro = request.POST.get('IntensidadHombro')
-        otraActividadMolestaAuHombro = request.POST.get('actividadAumHombro')
-        otraActividadMolestaDisHombro = request.POST.get('actividadDismHombro')
+
+        otraActividadMolestaAuHombro = 0
+        if request.POST.get('actividadAumHombro') is not None:
+            otraActividadMolestaAuHombro = request.POST.get('actividadAumHombro')
+
+        otraActividadMolestaDisHombro = 0
+        if request.POST.get('actividadDismHombro') is not None:
+            otraActividadMolestaDisHombro = request.POST.get('actividadDismHombro')
+
         duracionMolestiaHombro = request.POST.get('Cuanto dura aproximadamente cada episodio de molestia o dolor')
         interfirioTrabajoHombro = request.POST.get('Cuánto interfirió con su habilidad para trabajar')
 
@@ -365,14 +385,22 @@ def iniciarTestMEPiloto(request):
         print(duracionMolestiaHombro, "   Cuanto dura aproximadamente cada episodio de molestia o dolor")
         print(interfirioTrabajoHombro, "   Cuánto interfirió con su habilidad para trabajar")
 
-        cuellolugarMolestia = request.POST.get('ladoDolorCuello')
+        cuellolugarMolestia = 0
+        if request.POST.get('ladoDolorCuello') is not None:
+            cuellolugarMolestia = request.POST.get('ladoDolorCuello')
+
         cuellomolestiaSepresenta = request.POST.get('Generalmente se presentan como: Cuello')
         cuellolaMolestiaEs = request.POST.get('Seleccione cada cuanto presenta la sintomatologia en su Cuello')
         cuelloseEfectuaMolestia = request.POST.get(
             'La molestia se presenta cuando efectua que tipo de movimientos: Cuello')
         cuellointensidadMolestia = request.POST.get('IntensidadCuello')
-        cuellootraActividadMolestaAu = request.POST.get('actividadAumCuello')
-        cuellootraActividadMolestaDis = request.POST.get('actividadDismCuello')
+        cuellootraActividadMolestaAu = 0
+        if request.POST.get('actividadAumCuello') is not None:
+            cuellootraActividadMolestaAu = request.POST.get('actividadAumCuello')
+
+        cuellootraActividadMolestaDis = 0
+        if request.POST.get('actividadDismCuello') is not None:
+            cuellootraActividadMolestaDis = request.POST.get('actividadDismCuello')
         cuelloduracionMolestia = request.POST.get(
             'Cuanto dura aproximadamente cada episodio de molestia o dolor : Cuello')
         cuellointerfirioTrabajo = request.POST.get('Cuánto interfirió con su habilidad para trabajar : Cuello')
@@ -388,13 +416,23 @@ def iniciarTestMEPiloto(request):
         print(cuelloduracionMolestia, "   Cuanto dura aproximadamente cada episodio de molestia o dolor")
         print(cuellointerfirioTrabajo, "   Cuánto interfirió con su habilidad para trabajar : Cuello")
 
-        codolugarMolestia = request.POST.get('ladoDolorCodo')
+        codolugarMolestia = 0
+        if request.POST.get('ladoDolorCodo') is not None:
+            codolugarMolestia = request.POST.get('ladoDolorCodo')
+
         codomolestiaSepresenta = request.POST.get('Generalmente se presentan como: Codo')
         codolaMolestiaEs = request.POST.get('Seleccione cada cuanto presenta la sintomatologia en su Codo')
         codoseEfectuaMolestia = request.POST.get('La molestia se presenta cuando efectua que tipo de movimientos: Codo')
         codointensidadMolestia = request.POST.get('IntensidadCodo')
-        codootraActividadMolestaAu = request.POST.get('actividadAumCodo')
-        codootraActividadMolestaDis = request.POST.get('actividadDismCodo')
+
+        codootraActividadMolestaAu = 0
+        if request.POST.get('actividadAumCodo') is not None:
+            codootraActividadMolestaAu = request.POST.get('actividadAumCodo')
+
+        codootraActividadMolestaDis = 0
+        if request.POST.get('actividadDismCodo') is not None:
+            codootraActividadMolestaDis = request.POST.get('actividadDismCodo')
+
         cododuracionMolestia = request.POST.get('Cuanto dura aproximadamente cada episodio de molestia o dolor : Codo')
         codointerfirioTrabajo = request.POST.get('Cuánto interfirió con su habilidad para trabajar : Codo')
 
@@ -409,39 +447,69 @@ def iniciarTestMEPiloto(request):
         print(codootraActividadMolestaDis, "   Cuanto dura aproximadamente cada episodio de molestia o dolor")
         print(codointerfirioTrabajo, "   Cuánto interfirió con su habilidad para trabajar")
 
-        manolugarMolestia = request.POST.get('ladoDolorMano')
+        manolugarMolestia = 0
+        if request.POST.get('ladoDolorMano') is not None:
+            manolugarMolestia = request.POST.get('ladoDolorMano')
+
         manomolestiaSepresenta = request.POST.get('Generalmente se presentan como: Mano')
         manolaMolestiaEs = request.POST.get('Seleccione cada cuanto presenta la sintomatologia en su Mano')
         manoseEfectuaMolestia = request.POST.get('La molestia se presenta cuando efectua que tipo de movimientos: Mano')
         manointensidadMolestia = request.POST.get('IntensidadMano')
-        manootraActividadMolestaAu = request.POST.get('actividadAumMano')
-        manootraActividadMolestaDis = request.POST.get('actividadDismCodo')
+
+        manootraActividadMolestaAu = 0
+        if request.POST.get('actividadAumMano') is not None:
+            manootraActividadMolestaAu = request.POST.get('actividadAumMano')
+
+        manootraActividadMolestaDis = 0
+        if request.POST.get('actividadDismCodo') is not None:
+            manootraActividadMolestaDis = request.POST.get('actividadDismCodo')
+
         manoduracionMolestia = request.POST.get('Cuanto dura aproximadamente cada episodio de molestia o dolor : Mano')
         manointerfirioTrabajo = request.POST.get('Cuánto interfirió con su habilidad para trabajar : Mano')
 
-        espaldaDorsallugarMolestia = request.POST.get('ladoDolorespaldaDorsal')
+        espaldaDorsallugarMolestia = 0
+        if request.POST.get('ladoDolorespaldaDorsal') is not None:
+            espaldaDorsallugarMolestia = request.POST.get('ladoDolorespaldaDorsal')
+
         espaldaDorsalmolestiaSepresenta = request.POST.get('Generalmente se presentan como: espalda Dorsal')
         espaldaDorsallaMolestiaEs = request.POST.get(
             'Seleccione cada cuanto presenta la sintomatologia en su espalda Dorsal')
         espaldaDorsaleEfectuaMolestia = request.POST.get(
             'La molestia se presenta cuando efectua que tipo de movimientos: espalda Dorsal')
         espaldaDorsalintensidadMolestia = request.POST.get('IntensidadespaldaDorsal')
-        espaldaDorsalotraActividadMolestaAu = request.POST.get('actividadAumespaldaDorsal')
-        espaldaDorsalotraActividadMolestaDis = request.POST.get('actividadDismespaldaDorsal')
+
+        espaldaDorsalotraActividadMolestaAu = 0
+        if request.POST.get('actividadAumespaldaDorsal') is not None:
+            espaldaDorsalotraActividadMolestaAu = request.POST.get('actividadAumespaldaDorsal')
+
+        espaldaDorsalotraActividadMolestaDis = 0
+        if request.POST.get('actividadAumespaldaDorsal') is not None:
+            espaldaDorsalotraActividadMolestaDis = request.POST.get('actividadDismespaldaDorsal')
+
         espaldaDorsalduracionMolestia = request.POST.get(
             'Cuanto dura aproximadamente cada episodio de molestia o dolor : espalda Dorsal')
         espaldaDorsalinterfirioTrabajo = request.POST.get(
             'Cuánto interfirió con su habilidad para trabajar : espalda Dorsal')
 
-        espaldaBajalugarMolestia = request.POST.get('ladoDolorespaldaBaja')
+        espaldaBajalugarMolestia = 0
+        if request.POST.get('actividadAumespaldaDorsal') is not None:
+            espaldaBajalugarMolestia = request.POST.get('ladoDolorespaldaBaja')
+
         espaldaBajamolestiaSepresenta = request.POST.get('Generalmente se presentan como: espalda Baja')
         espaldaBajalaMolestiaEs = request.POST.get(
             'Seleccione cada cuanto presenta la sintomatologia en su espalda Baja')
         espaldaBajaeEfectuaMolestia = request.POST.get(
             'La molestia se presenta cuando efectua que tipo de movimientos: espalda Baja')
         espaldaBajaintensidadMolestia = request.POST.get('IntensidadespaldaBaja')
-        espaldaBajaotraActividadMolestaAu = request.POST.get('actividadAumespaldaBaja')
-        espaldaBajaotraActividadMolestaDis = request.POST.get('actividadDismespaldaBaja')
+
+        espaldaBajaotraActividadMolestaAu = 0
+        if request.POST.get('actividadAumespaldaDorsal') is not None:
+            espaldaBajaotraActividadMolestaAu = request.POST.get('actividadAumespaldaBaja')
+
+        espaldaBajaotraActividadMolestaDis = 0
+        if request.POST.get('actividadDismespaldaBaja') is not None:
+            espaldaBajaotraActividadMolestaDis = request.POST.get('actividadDismespaldaBaja')
+
         espaldaBajaduracionMolestia = request.POST.get(
             'Cuanto dura aproximadamente cada episodio de molestia o dolor : espalda Baja')
         espaldaBajainterfirioTrabajo = request.POST.get(
@@ -563,9 +631,8 @@ def iniciarTestMEPiloto(request):
 
         entradasNormal = normalizarDatos(entradas)
         if (entradasNormal == True):
-            riesgo = Riesgo(nombre='Riesgo ME')
-            riesgo.save()
-            # riesgo= Riesgo.objects.filter(id=1).get()
+
+            riesgo = Riesgo.objects.filter(id=1).get()
             test = TestME(idRiesgo=riesgo, usuario=request.user)
             test.save()
 
@@ -670,7 +737,6 @@ def iniciarTestMEPiloto(request):
             prediccion = predic()
             prediccion = prediccion.predecir()
             print(prediccion)
-            enviarCorreoDiagnostico(prediccion, perfilDemografico, request.user)
 
             idtest = test.id
 
@@ -680,18 +746,18 @@ def iniciarTestMEPiloto(request):
     return render(request, 'hombro.html', {'sabiasQues': sabiasQue})
 
 
-def enviarCorreoDiagnostico(prediccion, perfilDemografico, user):
+def enviarCorreoDiagnostico(prediccion,perfilDemografico,user):
+    
     correo = []
     for correos in correo:
         correo.append('jbarrera12345@gmail.com')
-    datos = 'predicción', prediccion, 'cedula', perfilDemografico.cedula0, 'cargo', perfilDemografico.cargo0.nombre, 'dpendencia', perfilDemografico.dependencia0.nombre
+    datos = 'predicción',prediccion,'cedula', perfilDemografico.cedula0,'cargo', perfilDemografico.cargo0.nombre,'dpendencia', perfilDemografico.dependencia0.nombre
 
     subject = 'Diagnostico de Riesgo Musculo-Esqueletico'
     message = datos
     list_email = correo
     email_from = 'jbarrera1235@gmail.com'
     send_mail(subject, message, email_from, list_email)
-
 
 def aggEnfermedad(request):
     sabiasQue = filtroSabiasQue
@@ -701,30 +767,32 @@ def aggEnfermedad(request):
             form.save()
     else:
         form = EnfermedadForm()
-    return render(request, 'SVE/aggEnfermedad.html', {'form': form, 'sabiasQues': sabiasQue})
+    return render(request, 'SVE/aggEnfermedad.html',{'form':form,'sabiasQues': sabiasQue})
 
+        
+   
+    return render(request, 'SVE/aggDescripcionEnfer.html',{'enfermedades':enfermedad})
 
 def aggDefEnfermedad(request):
     sabiasQue = filtroSabiasQue
     if request.method == 'POST':
-        form = DescripcionEnfermedadForm(request.POST, request.FILES)
+        form = DescripcionEnfermedadForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
     else:
         form = DescripcionEnfermedadForm()
-    return render(request, 'SVE/aggDescripcionEnfer.html', {'form': form, 'sabiasQues': sabiasQue})
+    return render(request, 'SVE/aggDescripcionEnfer.html',{'form':form,'sabiasQues': sabiasQue})
 
 
 def Enfermedad(request):
     sabiasQue = filtroSabiasQue
-
-    return render(request, 'SVE/enfermedades.html', {'sabiasQues': sabiasQue})
-
+    
+    return render(request, 'SVE/enfermedades.html',{'sabiasQues': sabiasQue})
 
 def enfermedadME(request):
     sabiasQue = filtroSabiasQue
     posibleEnfermedad = PosibleEnfermedad.objects.filter(idRiesgo=1)
-    contexto = {'posibleEnfermedades': posibleEnfermedad, 'sabiasQues': sabiasQue}
+    contexto ={'posibleEnfermedades':posibleEnfermedad,'sabiasQues': sabiasQue}
 
     return render(request, 'RiesgoME/enfermedadesME.html', contexto)
 
@@ -735,27 +803,23 @@ def enfermedadMEEdit(request, identificacion):
     if request.method == 'GET':
         form = EnfermedadForm(instance=posibleEnfermedad)
     else:
-        form = EnfermedadForm(request.POST, instance=posibleEnfermedad)
+        form = EnfermedadForm(request.POST,instance=posibleEnfermedad)
         if form.is_valid():
             form.save()
-    return render(request, 'SVE/aggEnfermedad.html', {'form': form, 'sabiasQues': sabiasQue})
-
+    return render(request, 'SVE/aggEnfermedad.html', {'form': form,'sabiasQues': sabiasQue})
 
 def enfermedadMEEliminar(request, identificacion):
     sabiasQue = filtroSabiasQue
     posibleEnfermedad = PosibleEnfermedad.objects.get(id=identificacion)
     if request.method == 'POST':
         posibleEnfermedad.delete()
-    return render(request, 'RiesgoME/eliminarEnfermedadME.html',
-                  {'posibleEnfermedad': posibleEnfermedad, 'sabiasQues': sabiasQue})
-
+    return render(request, 'RiesgoME/eliminarEnfermedadME.html', {'posibleEnfermedad': posibleEnfermedad,'sabiasQues': sabiasQue})
 
 def informacionEnf(request, identificacion):
     sabiasQue = filtroSabiasQue
-    definicionEnfermedad = DefinicionEnfermedad.objects.filter(enfermedad=identificacion)
-    contexto = {'definicionEnfermedades': definicionEnfermedad, 'sabiasQues': sabiasQue}
+    definicionEnfermedad = DefinicionEnfermedad.objects.filter(enfermedad = identificacion)
+    contexto = {'definicionEnfermedades': definicionEnfermedad,'sabiasQues': sabiasQue}
     return render(request, 'RiesgoME/informacionEnf.html', contexto)
-
 
 def defEnfMEEdit(request, identificacion):
     sabiasQue = filtroSabiasQue
@@ -763,66 +827,79 @@ def defEnfMEEdit(request, identificacion):
     if request.method == 'GET':
         form = DescripcionEnfermedadForm(instance=definicionEnfermedad)
     else:
-        form = DescripcionEnfermedadForm(request.POST, request.FILES, instance=definicionEnfermedad)
+        form = DescripcionEnfermedadForm(request.POST,request.FILES,instance=definicionEnfermedad)
         if form.is_valid():
             form.save()
-    return render(request, 'SVE/aggDescripcionEnfer.html', {'form': form, 'sabiasQues': sabiasQue})
-
+    return render(request, 'SVE/aggDescripcionEnfer.html', {'form': form,'sabiasQues': sabiasQue})
 
 def defEnfMEEliminar(request, identificacion):
     sabiasQue = filtroSabiasQue
     print('entro')
     definicionEnfermedad = DefinicionEnfermedad.objects.get(id=identificacion)
-
+    
     if request.method == 'POST':
         idEnfermedad = str(definicionEnfermedad.enfermedad.id)
         print(idEnfermedad)
         definicionEnfermedad.delete()
-        return HttpResponseRedirect(reverse('informacionEnf', args=(idEnfermedad)))
-    return render(request, 'RiesgoME/eliminarDefEnfer.html',
-                  {'definicionEnfermedad': definicionEnfermedad, 'sabiasQues': sabiasQue})
+        return HttpResponseRedirect(reverse('informacionEnf',args=(idEnfermedad)))
+    return render(request, 'RiesgoME/eliminarDefEnfer.html', {'definicionEnfermedad': definicionEnfermedad,'sabiasQues': sabiasQue})
 
 
 def aggRecomendaciones(request):
     sabiasQue = filtroSabiasQue
     if request.method == 'POST':
-        form = DescripcionRecomendacionesForm(request.POST, request.FILES)
+        form = DescripcionRecomendacionesForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
     else:
         form = DescripcionRecomendacionesForm()
-    return render(request, 'SVE/crearRecomendaciones.html', {'form': form, 'sabiasQues': sabiasQue})
-
+    return render(request, 'SVE/crearRecomendaciones.html',{'form':form,'sabiasQues': sabiasQue})
 
 def listaRecomendaciones(request):
     sabiasQue = SabiasQue.objects.all()
-    contexto = {'sabiasQues': sabiasQue}
+    contexto ={'sabiasQues':sabiasQue}
 
     return render(request, 'SVE/listaRecomendaciones.html', contexto)
 
-
 def recomendacionesEdit(request, identificacion):
+    
     sabiasQue = SabiasQue.objects.get(id=identificacion)
     if request.method == 'GET':
         form = DescripcionRecomendacionesForm(instance=sabiasQue)
     else:
-        form = DescripcionRecomendacionesForm(request.POST, request.FILES, instance=sabiasQue)
+        form = DescripcionRecomendacionesForm(request.POST,request.FILES,instance=sabiasQue)
         if form.is_valid():
             form.save()
     return render(request, 'SVE/crearRecomendaciones.html', {'form': form})
 
-
 def recomendacionesEliminar(request, identificacion):
+  
     sabiasQue = SabiasQue.objects.get(id=identificacion)
-
+    
     if request.method == 'POST':
         sabiasQue.delete()
         return HttpResponseRedirect(reverse('listaRecomendaciones'))
-    return render(request, 'RiesgoME/eliminarDefEnfer.html', {'sabiasQues': sabiasQue})
+    return render(request, 'RiesgoME/eliminarDefEnfer.html', {'sabiasQue': sabiasQue})
 
 
+def estadisticas(request):
+    return render(request, 'SVE/estadisticas.html')
 
 
+def estadistica1(request):
+    data = dict
+    data = PerfilDemografico.objects.values_list('cargo0__nombre').annotate(dcount=Count('cargo0'))
 
+    return render(request, 'SVE/estadistica1.html', {'datas': data})
+
+
+def estadistica2(request):
+    data = dict
+    data = PerfilDemografico.objects.values_list('dependencia0__nombre').annotate(dcount=Count('dependencia0'))
+
+    return render(request, 'SVE/estadistica2.html', {'datas': data})
+
+
+  
 
 

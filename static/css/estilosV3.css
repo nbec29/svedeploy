@@ -130,30 +130,16 @@ li.Riesgo2 {
 
 }
 
-input[type=submit] {
- display: inline-block;
-  padding: 15px 25px;
-  font-size: 24px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 30px;
-  box-shadow: 0 2px #999;
-
 
 }
 
-input[type = text]{
+
+input[type = text], input[type=number]{
   width: 50%;
   padding: 5px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   align: center;
-
 }
 
 input[type = email]{
@@ -191,20 +177,7 @@ input[type=submit] {
 }
 
 
-button {
- display: inline-block;
-  padding: 15px 25px;
-  font-size: 24px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 30px;
-  box-shadow: 0 2px #999;
-}
+
 
 input[type = text]{
   width: 50%;
@@ -532,4 +505,184 @@ p {
 
 .enlaceFooter, .enlaceFooter:hover{
     color: white;
+}
+
+/* FORM */
+button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 2px #999;
+}
+#botonDolor{
+
+  padding: 5px 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 2px;
+  background: #00b33c ;
+  display: inline !important;
+  width: 50px;
+  height: 25px;
+  font-size: 15px;
+
+}
+#decision {
+  height: 600px;
+  width: 500px;
+}
+
+
+select {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #999999;
+  border: 1px solid #ccc;
+color: white;
+
+}
+option {
+  color: black;
+}
+
+div {
+
+}
+.slider {
+  width: 60%;
+  margin: 50px auto;
+  -webkit-appearance: none;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  background-color: rgb(200, 200, 200);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 10px;
+  background-color: hsl(50, 100%, 50%);
+  overflow: visible;
+  cursor: pointer;
+}
+
+.slidecontainer {
+  transform: translateY(-10px);
+}
+
+h3.h3test{
+  margin-top: 0px;
+  text-align:center !important;
+ 
+  color: red !important;
+
+}
+.subtitulo{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+legend
+{
+  color: black;
+  margin-bottom:0px;
+  margin-left:16px;
+}
+
+
+#formulario{
+
+  margin-left: 100px !important ;
+
+}
+
+.tablaSabias td,tr{
+    padding: 15px;
+}
+
+.imagenDesc{
+    border-radius: 25%;
+}
+
+.oval-thought {
+  position:relative;
+  width: auto;
+  height: auto;
+  padding:50px 40px;
+  margin:1em auto 80px;
+  text-align:center;
+  color:#000;
+  background:#C3F2FF;
+  /* css3 */
+
+  /*
+  NOTES:
+  -webkit-border-radius:220px 120px; // produces oval in safari 4 and chrome 4
+  -webkit-border-radius:220px / 120px; // produces oval in chrome 4 (again!) but not supported in safari 4
+  Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+  */
+  -webkit-border-top-left-radius:220px 120px;
+  -webkit-border-top-right-radius:220px 120px;
+  -webkit-border-bottom-right-radius:220px 120px;
+  -webkit-border-bottom-left-radius:220px 120px;
+  -moz-border-radius:220px / 120px;
+  border-radius:220px / 120px;
+}
+
+.oval-thought p {font-size:1.25em;}
+
+/* creates the larger circle */
+.oval-thought:before {
+  content:"";
+  position:absolute;
+  bottom:-20px;
+  left:50px;
+  width:30px;
+  height:30px;
+  background:#C3F2FF;
+  /* css3 */
+  -webkit-border-radius:30px;
+  -moz-border-radius:30px;
+  border-radius:30px;
+}
+
+/* creates the smaller circle */
+.oval-thought:after {
+  content:"";
+  position:absolute;
+  bottom:-30px;
+  left:30px;
+  width:15px;
+  height:15px;
+  background:#C3F2FF;
+  /* css3 */
+  -webkit-border-radius:15px;
+  -moz-border-radius:15px;
+  border-radius:15px;
+}
+
+input.form-control{
+    width: 150%;
+    height: 100%;
+}
+
+select.form-control{
+     width: 150%;
+     height: 100%;
+     color: black;
+}
+
+.tablaEnf{
+    font-size: 25px;
 }

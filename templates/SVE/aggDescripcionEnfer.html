@@ -1,17 +1,27 @@
 {% extends "base_generic.html" %}
 
   {% block title %} Agregar Enfermedad {% endblock%}
-                     {% if perms.enfermedad.add_enfermedad %}
+
 
     {% block content %}
+{% if perms.enfermedad.add_enfermedad %}
+<div align="center">
+    <h1>Agregar descripción</h1><br>
 
     <form method="post" enctype="multipart/form-data">
 
       {% csrf_token %}
-      {{ form.as_p }}
+        <table class="tablaEnf">
+            <tr>
+                <td>{{ form.as_table }}</td>
+            </tr>
+            </table>
+        <br>
+        <a href=" /inicio/administrarSVE/aggenfermedad" class="enlace">Volver</a> &nbsp;
       <button  type="submit" >Guardar</button>
     
    
 </form>
+</div>
     {% endif %}
     {% endblock %}

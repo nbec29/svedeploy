@@ -27,15 +27,15 @@ class EnfermedadForm(forms.ModelForm):
         labels ={
            
             'idRiesgo': 'Riesgo',
-            'nombre':'nombre',
-            'descripcion':'descripción',
+            'nombre':'Nombre',
+            'descripcion':'Descripción',
         }
         widgets = {
 
             
             'idRiesgo':forms.Select(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
-            'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
 class DescripcionEnfermedadForm(forms.ModelForm):
@@ -57,7 +57,7 @@ class DescripcionEnfermedadForm(forms.ModelForm):
 
             
             'enfermedad':forms.Select(attrs={'class': 'form-control'}),
-            'descripcion1': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion1': forms.Textarea(attrs={'class': 'form-control'}),
             
         }
 
@@ -83,7 +83,7 @@ class DescripcionRecomendacionesForm(forms.ModelForm):
 
             'idRiesgo':forms.Select(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
-            'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
             
             
         }
@@ -104,8 +104,8 @@ class PoblacionForm(forms.ModelForm):
 
         ]
         labels ={
-            'correo': 'Ingrese el correo',
-            'Riesgo': 'poblacion',
+            'correo': 'Ingrese el correo:',
+            'Riesgo': 'Población:',
         }
         widgets = {
 

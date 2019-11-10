@@ -1,0 +1,111 @@
+{% extends "base_generic.html" %}
+
+  {% block title %} Notificaciones {% endblock%}
+ 
+{% block content %}
+{% if perms.poblacion.add_poblacion %}
+
+{%if datas%}
+<body>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  
+  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto" class="border"></div>
+  <script>
+      
+      var cantidad = 0;
+      
+      var listaCategorias = [];
+      
+     </script>
+
+{% for data in datas%}
+
+<script>
+
+cantidad +=  parseFloat("{{data.1}}");
+
+
+
+
+</script>
+
+
+{% endfor%}
+
+  {% for data in datas%}
+
+      <script>
+      
+      listaCategorias.push({
+                name: "{{data.0}}",
+                y: parseFloat(("{{data.1}}"*100)/cantidad)
+            });
+     
+      
+      
+
+      </script>
+     
+      
+  {% endfor%}
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+   
+  </body>
+
+<script>
+Highcharts.chart('container', {
+  
+  
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Cantidad de test contestados por cargo'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+          }
+        }
+      },
+      series: [{
+          
+
+        name: 'porcentaje',
+        colorByPoint: true,
+        data: 
+        listaCategorias
+      }]
+    });
+
+
+</script>
+<div align="center">
+<a href="/inicio/administrarSVE/estadisticas" class="enlace">Volver</a> &nbsp;
+    </div>{%else%}
+<h1 align="center">No se ha realizado ningún test.</h1>
+<div align="center">
+<a href="/inicio/administrarSVE/estadisticas" class="enlace">Volver</a> &nbsp;
+    </div>{%endif%}
+{% else %}
+<h1 align="center">No tiene permisos para ver esta página.</h1>
+
+{%endif%}
+{% endblock %}

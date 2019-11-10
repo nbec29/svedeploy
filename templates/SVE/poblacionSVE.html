@@ -28,11 +28,14 @@
                 <form method="post" align="center">
             <div align="center">
 
-
+            <table class="tablaEnf">
             {% csrf_token %}
-            {{ form.as_p }}
-
+                <tr>
+                    <td>{{ form.as_table }}</td>
+                </tr>
+            </table>
                 </div>
+                    <br>
                <a href="/inicio/administrarSVE" class="enlace">Volver</a> &nbsp;
                <button   onclick="valoresBlanco()"  >Guardar</button>
 
@@ -91,6 +94,6 @@
 
         </body>
 {% else %}
-no tiene permisos para ver esta pagina
+<h1 align="center"> No tiene permisos para ver esta pagina</h1>
 {%endif%}
     {% endblock %}

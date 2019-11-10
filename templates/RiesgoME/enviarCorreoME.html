@@ -4,11 +4,11 @@
  {% if perms.poblacion.add_poblacion %}
 
         <body>
-        <h1>se ha enviado los mensajes a su población del riesgo musculo-esqueletico</h1>
-             <a  href="/inicio/administrarSVE/poblacionSVE/lista">aceptar</a>
+        <h1>Se ha enviado los mensajes a su población del riesgo musculo-esqueletico.</h1>
+             <a class="enlace" href="/inicio/administrarSVE/poblacionSVE/lista">Aceptar</a>
 
         </body>
 {% else %}
-no tiene permisos para ver esta pagina
+<h1 align="center"> No tiene permisos para ver esta pagina.</h1>
 {%endif%}
     {% endblock %}

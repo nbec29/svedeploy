@@ -1,9 +1,9 @@
 from django.urls import path
 from apps.Riesgos.views import inicio, riesgoME, enfermedadME, administrarSVE, PoblacionCreate, \
-     Poblacionlistar, poblacionEdit, poblacionEliminar, poblacionEnviarCorreo,EnviarMensaje, \
-     notificaciones,aggEnfermedad,Enfermedad,aggDefEnfermedad,enfermedadMEEdit,enfermedadMEEliminar, \
-     iniciarTestMEPiloto,informacionEnf,defEnfMEEdit,defEnfMEEliminar,aggRecomendaciones,listaRecomendaciones, \
-     recomendacionesEdit,recomendacionesEliminar
+    Poblacionlistar, poblacionEdit, poblacionEliminar, poblacionEnviarCorreo, EnviarMensaje, \
+    notificaciones, aggEnfermedad, Enfermedad, aggDefEnfermedad, enfermedadMEEdit, enfermedadMEEliminar, \
+    iniciarTestMEPiloto, informacionEnf, defEnfMEEdit, defEnfMEEliminar, aggRecomendaciones, listaRecomendaciones, \
+    recomendacionesEdit, recomendacionesEliminar, estadisticas, estadistica1, estadistica2
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import url
 
@@ -40,7 +40,9 @@ urlpatterns = [
     path('administrarSVE/poblacionSVE/editar/<int:identificacion>', login_required(poblacionEdit), name='EditarPoblacionME'),
     path('administrarSVE/poblacionSVE/eliminar/<int:identificacion>', login_required(poblacionEliminar),name='EliminarPoblacionME'),
 
-
+    path('administrarSVE/estadisticas', login_required(estadisticas),name='estadisticas'),
+    path('administrarSVE/estadistica1', login_required(estadistica1),name='estadistica1'),
+    path('administrarSVE/estadistica2', login_required(estadistica2),name='estadistica2'),
    
    
 

@@ -3,14 +3,21 @@
   {% block title %} Agregar Enfermedad {% endblock%}
     {% block content %}
                      {% if perms.enfermedad.add_enfermedad %}
-
+<h1 align="center">Agregar enfermedad</h1><br>
+<div align="center">
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <table class="tablaEnf">
+            <tr>
+                <td>{{ form.as_table }}</td>
+            </tr>
+            </table>
+        <br>
 
-       
+       <a href=" /inicio/administrarSVE" class="enlace">Volver</a> &nbsp;
         <input type="submit" value="Grabar" class="default" name="_save">
 </form>
+    </div>
 
 <body>
     <div align="center">
@@ -23,7 +30,7 @@
             <div class="card">
              <a href="/inicio/musculoEsqueletico/enfermedadesME" class="card-container" rel="keep-params">
                 <div class="card-icon card-icon-1">
-                           <span class="icono fa fa-bell"></span>
+                           <span class="icono fas fa-clipboard-list"></span>
                 </div>
                <div class="card-title-container">
                    <h3 class="card-title">
@@ -37,7 +44,7 @@
              <div class="card">
                 <a href="/inicio/administrarSVE/aggDefEnfermedades" class="card-container" rel="keep-params">
                     <div class="card-icon card-icon-4">
-                        <i class="icono fa fa-bar-chart"></i>
+                        <i class="icono fas fa-edit"></i>
                     </div>
                     <div class="card-title-container">
                         <h3 class="card-title">Agregar Descripciones A Enfermedades</h3>
@@ -49,6 +56,6 @@
     </div>
 </body>
 {% else %}
-no tiene permisos para ver esta pagina
+<h1 align="center">No tiene permisos para ver esta página.</h1>
 {%endif%}
     {% endblock %}

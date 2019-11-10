@@ -8,9 +8,10 @@
                      {% if perms.poblacion.add_poblacion %}
 
         <h1 align="center">
-            Lista de enfermedades
+            Lista de recomendaciones
         </h1>
 <table align="center" border="1">
+    {%if sabiasQues%}
 <thead>
             <tr>
                 <td align="center">Riesgo</td>
@@ -23,6 +24,7 @@
             </tr>
 
         </thead>
+    {%endif%}
         <tbody>
 
         {% if sabiasQues %}
@@ -62,14 +64,14 @@
         {% else %}
 
         <h1>
-            No hay personas registradas
+            No hay recomendaciones registradas
         </h1>
         {% endif %}
         </tbody>
     </table>
 <br>
 <div align="center">
-        <a href="/inicio/administrarSVE/poblacionSVE" class="enlace">Volver</a> &nbsp;
+        <a href="/inicio/administrarSVE/aggRecomendaciones" class="enlace">Volver</a> &nbsp;
         
 </div>
 <br>

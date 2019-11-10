@@ -3,16 +3,24 @@
   {% block title %} Agregar Enfermedad {% endblock%}
     {% block content %}
                      {% if perms.poblacion.add_poblacion %}
-
+<div align="center">
+    <h1>Agregar recomendaciones</h1>
+    <br>
     <form method="post" enctype="multipart/form-data">
 
       {% csrf_token %}
-      {{ form.as_p }}
+        <table class="tablaEnf">
+            <tr>
+                <td>{{ form.as_table }}</td>
+            </tr>
+            </table>
+        <br>
+        <a href=" /inicio/administrarSVE" class="enlace">Volver</a> &nbsp;
       <button  type="submit" >Guardar</button>
     
    
 </form>
-
+</div>
 <body>
     <div align="center">
             <h1>Administrador Enfermedades</h1>
@@ -24,7 +32,7 @@
             <div class="card">
              <a href="/inicio/administrarSVE/listaRecomendaciones" class="card-container" rel="keep-params">
                 <div class="card-icon card-icon-1">
-                           <span class="icono fa fa-bell"></span>
+                           <span class="icono fas fa-list-ol"></span>
                 </div>
                <div class="card-title-container">
                    <h3 class="card-title">

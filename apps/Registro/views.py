@@ -5,19 +5,17 @@ from django.contrib.auth.forms import UserCreationForm
 from apps.Registro.formularios import RegistroUsuario
 from django.contrib.auth.models import Group
 from django.urls import reverse
-from django.contrib.auth.models import Group
 
 
 # Create your views here.
 def registro(request):
-    return render(request, 'registro.html')
     print('RegistroUsuario')
     print(request.POST)
     return render(request,'registro.html')
 
-
 def login(request):
-    return render(request, 'login.html')
+    return render(request,'login.html')
+
 
 
 class PersonaCreate(CreateView):
@@ -32,3 +30,8 @@ class PersonaCreate(CreateView):
         g = Group.objects.get(name = 'Usuarios')
         g.user_set.add(usuario)
         return reverse('login')
+
+    
+
+
+
