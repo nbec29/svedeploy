@@ -1,32 +1,24 @@
-
 from django.shortcuts import render
-from apps.Riesgos.models import poblacion,PerfilDemografico, Riesgo, HombroME,CodoME,CuelloME,ManoME,EspaldaDorsalME,EspaldaBajaME, Cargo,Dependencia, TestME, PosibleEnfermedad, DefinicionEnfermedad, SabiasQue
-from apps.Riesgos.formularios import PoblacionForm, PerfilDemograficoForm, HombroMEForm, TestMEForm,CuelloMEForm,ManoMEForm,CodoMEForm,EspaldaDorsalMEForm,EspaldaBajaMEForm,EnfermedadForm,DescripcionEnfermedadForm,DescripcionRecomendacionesForm
+from apps.Riesgos.models import poblacion, PerfilDemografico, Riesgo, HombroME, CodoME, CuelloME, ManoME, \
+    EspaldaDorsalME, EspaldaBajaME, Cargo, Dependencia, TestME, PosibleEnfermedad, DefinicionEnfermedad, SabiasQue
+from apps.Riesgos.formularios import PoblacionForm, EnfermedadForm, DescripcionEnfermedadForm, \
+    DescripcionRecomendacionesForm
 from django.core.mail import send_mail
-import django_excel as excel
-import pandas as pd
 import random
-from keras.models import load_model
 from apps.Riesgos.redNeuronalME.Cargar_Modelo import predic
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 import csv
 from django.db.models import Count
 
-import os
-
-
-
-
 
 
 def normalizarDatos(entradas):
-
     print('pasa1')
     datos = entradas[0]
     print('pasa2')
 
-    lugarMolestiaHombro = (datos[0] - 1)/ (3-1)
+    lugarMolestiaHombro = (datos[0] - 1) / (3 - 1)
     molestiaSepresentaHombro = (datos[1] - 1) / (4 - 1)
     laMolestiaEsHombro = (datos[2] - 1) / (5 - 1)
     seEfectuaMolestiaHombro = (datos[3] - 1) / (2 - 1)
@@ -36,13 +28,13 @@ def normalizarDatos(entradas):
     duracionMolestiaHombro = (datos[7] - 1) / (4 - 1)
     interfirioTrabajoHombro = (datos[8] - 1) / (3 - 1)
 
-    cuellolugarMolestia = (datos[9] - 1)/ (3-1)
+    cuellolugarMolestia = (datos[9] - 1) / (3 - 1)
     cuellomolestiaSepresenta = (datos[10] - 1) / (4 - 1)
     cuellolaMolestiaEs = (datos[11] - 1) / (5 - 1)
     cuelloseEfectuaMolestia = (datos[12] - 1) / (4 - 1)
     cuellointensidadMolestia = (datos[13] - 1) / (10 - 1)
-    cuellootraActividadMolestaAu =  (datos[14] - 1) / (2 - 1)
-    cuellootraActividadMolestaDis =(datos[15] - 1) / (2 - 1)
+    cuellootraActividadMolestaAu = (datos[14] - 1) / (2 - 1)
+    cuellootraActividadMolestaDis = (datos[15] - 1) / (2 - 1)
     cuelloduracionMolestia = (datos[16] - 1) / (4 - 1)
     cuellointerfirioTrabajo = (datos[17] - 1) / (3 - 1)
 
@@ -242,16 +234,11 @@ def normalizarDatos(entradas):
 
     )
 
-
-
-
-
-
     archivo = open('Eprediccion.csv', 'w')
 
     with archivo:
-       writer = csv.writer(archivo, delimiter=',')
-       writer.writerows(entradas1)
+        writer = csv.writer(archivo, delimiter=',')
+        writer.writerows(entradas1)
 
     return True
 
@@ -263,30 +250,32 @@ def filtroSabiasQue():
         cantidad += 1
     cantidad -= 1
     cantidad = (random.randrange(cantidad))
-    
+
     sabiasQue = sabiasQue[cantidad]
     return sabiasQue
+
 
 # Create your views here.
 def inicio(request):
     sabiasQue = filtroSabiasQue
-    return render(request,'SVE/homepage.html',{'sabiasQues': sabiasQue})
+    return render(request, 'SVE/homepage.html', {'sabiasQues': sabiasQue})
+
 
 def riesgoME(request):
     sabiasQue = filtroSabiasQue
-    return render(request,'RiesgoME/musculoEsqueletico.html',{'sabiasQues': sabiasQue})
+    return render(request, 'RiesgoME/musculoEsqueletico.html', {'sabiasQues': sabiasQue})
 
-
- 
 
 def administrarSVE(request):
     sabiasQue = filtroSabiasQue
-    return render(request, 'SVE/administrarSVE.html',{'sabiasQues': sabiasQue})
+    return render(request, 'SVE/administrarSVE.html', {'sabiasQues': sabiasQue})
+
 
 def EnviarMensaje(request):
     sabiasQue = filtroSabiasQue
 
-    return render(request, 'RiesgoME/mensajeME.html',{'sabiasQues': sabiasQue})
+    return render(request, 'RiesgoME/mensajeME.html', {'sabiasQues': sabiasQue})
+
 
 def PoblacionCreate(request):
     sabiasQue = filtroSabiasQue
@@ -296,13 +285,15 @@ def PoblacionCreate(request):
             form.save()
     else:
         form = PoblacionForm()
-    return render(request, 'SVE/poblacionSVE.html', {'form':form,'sabiasQues': sabiasQue})
+    return render(request, 'SVE/poblacionSVE.html', {'form': form, 'sabiasQues': sabiasQue})
+
 
 def Poblacionlistar(request):
     sabiasQue = filtroSabiasQue
     Poblacion = poblacion.objects.filter(Riesgo=1)
-    contexto ={'poblaciones':Poblacion,'sabiasQues': sabiasQue}
+    contexto = {'poblaciones': Poblacion, 'sabiasQues': sabiasQue}
     return render(request, 'RiesgoME/listaPoblacion.html', contexto)
+
 
 def poblacionEdit(request, identificacion):
     sabiasQue = filtroSabiasQue
@@ -310,20 +301,18 @@ def poblacionEdit(request, identificacion):
     if request.method == 'GET':
         form = PoblacionForm(instance=Poblacion)
     else:
-        form = PoblacionForm(request.POST,instance=Poblacion)
+        form = PoblacionForm(request.POST, instance=Poblacion)
         if form.is_valid():
             form.save()
-    return render(request, 'SVE/poblacionSVE.html', {'form': form,'sabiasQues': sabiasQue})
+    return render(request, 'SVE/poblacionSVE.html', {'form': form, 'sabiasQues': sabiasQue})
+
 
 def poblacionEliminar(request, identificacion):
     sabiasQue = filtroSabiasQue
     Poblacion = poblacion.objects.get(identificacion=identificacion)
     if request.method == 'POST':
         Poblacion.delete()
-    return render(request, 'RiesgoME/eliminarPoblacionME.html', {'poblacion': Poblacion,'sabiasQues': sabiasQue})
-
-
-
+    return render(request, 'RiesgoME/eliminarPoblacionME.html', {'poblacion': Poblacion, 'sabiasQues': sabiasQue})
 
 
 def poblacionEnviarCorreo(request):
@@ -331,23 +320,21 @@ def poblacionEnviarCorreo(request):
     Poblacion = poblacion.objects.filter(Riesgo=1)
     correo = []
     for correos in Poblacion:
-       correo.append(correos.correo)
+        correo.append(correos.correo)
     subject = 'Hola soy in correo de prueba'
     message = ' Correo de prueba SVE '
     email_from = 'jbarrera1235@gmail.com'
     recipient_list = correo
     send_mail(subject, message, email_from, recipient_list)
-    return render(request, 'RiesgoME/enviarCorreoME.html',{'sabiasQues': sabiasQue})
-
+    return render(request, 'RiesgoME/enviarCorreoME.html', {'sabiasQues': sabiasQue})
 
 
 def notificaciones(request):
     sabiasQue = filtroSabiasQue
     perfilDemografico = PerfilDemografico.objects.all()
-    contexto ={'perfilDemograficos':perfilDemografico,'sabiasQues': sabiasQue}
-    
+    contexto = {'perfilDemograficos': perfilDemografico, 'sabiasQues': sabiasQue}
 
-    return render(request, 'SVE/notificaciones.html',contexto)
+    return render(request, 'SVE/notificaciones.html', contexto)
 
 
 def iniciarTestMEPiloto(request):
@@ -746,18 +733,18 @@ def iniciarTestMEPiloto(request):
     return render(request, 'hombro.html', {'sabiasQues': sabiasQue})
 
 
-def enviarCorreoDiagnostico(prediccion,perfilDemografico,user):
-    
+def enviarCorreoDiagnostico(prediccion, perfilDemografico, user):
     correo = []
     for correos in correo:
         correo.append('jbarrera12345@gmail.com')
-    datos = 'predicción',prediccion,'cedula', perfilDemografico.cedula0,'cargo', perfilDemografico.cargo0.nombre,'dpendencia', perfilDemografico.dependencia0.nombre
+    datos = 'predicción', prediccion, 'cedula', perfilDemografico.cedula0, 'cargo', perfilDemografico.cargo0.nombre, 'dpendencia', perfilDemografico.dependencia0.nombre
 
     subject = 'Diagnostico de Riesgo Musculo-Esqueletico'
     message = datos
     list_email = correo
     email_from = 'jbarrera1235@gmail.com'
     send_mail(subject, message, email_from, list_email)
+
 
 def aggEnfermedad(request):
     sabiasQue = filtroSabiasQue
@@ -767,32 +754,32 @@ def aggEnfermedad(request):
             form.save()
     else:
         form = EnfermedadForm()
-    return render(request, 'SVE/aggEnfermedad.html',{'form':form,'sabiasQues': sabiasQue})
+    return render(request, 'SVE/aggEnfermedad.html', {'form': form, 'sabiasQues': sabiasQue})
 
-        
-   
-    return render(request, 'SVE/aggDescripcionEnfer.html',{'enfermedades':enfermedad})
+    return render(request, 'SVE/aggDescripcionEnfer.html', {'enfermedades': enfermedad})
+
 
 def aggDefEnfermedad(request):
     sabiasQue = filtroSabiasQue
     if request.method == 'POST':
-        form = DescripcionEnfermedadForm(request.POST,request.FILES)
+        form = DescripcionEnfermedadForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
     else:
         form = DescripcionEnfermedadForm()
-    return render(request, 'SVE/aggDescripcionEnfer.html',{'form':form,'sabiasQues': sabiasQue})
+    return render(request, 'SVE/aggDescripcionEnfer.html', {'form': form, 'sabiasQues': sabiasQue})
 
 
 def Enfermedad(request):
     sabiasQue = filtroSabiasQue
-    
-    return render(request, 'SVE/enfermedades.html',{'sabiasQues': sabiasQue})
+
+    return render(request, 'SVE/enfermedades.html', {'sabiasQues': sabiasQue})
+
 
 def enfermedadME(request):
     sabiasQue = filtroSabiasQue
     posibleEnfermedad = PosibleEnfermedad.objects.filter(idRiesgo=1)
-    contexto ={'posibleEnfermedades':posibleEnfermedad,'sabiasQues': sabiasQue}
+    contexto = {'posibleEnfermedades': posibleEnfermedad, 'sabiasQues': sabiasQue}
 
     return render(request, 'RiesgoME/enfermedadesME.html', contexto)
 
@@ -803,23 +790,27 @@ def enfermedadMEEdit(request, identificacion):
     if request.method == 'GET':
         form = EnfermedadForm(instance=posibleEnfermedad)
     else:
-        form = EnfermedadForm(request.POST,instance=posibleEnfermedad)
+        form = EnfermedadForm(request.POST, instance=posibleEnfermedad)
         if form.is_valid():
             form.save()
-    return render(request, 'SVE/aggEnfermedad.html', {'form': form,'sabiasQues': sabiasQue})
+    return render(request, 'SVE/aggEnfermedad.html', {'form': form, 'sabiasQues': sabiasQue})
+
 
 def enfermedadMEEliminar(request, identificacion):
     sabiasQue = filtroSabiasQue
     posibleEnfermedad = PosibleEnfermedad.objects.get(id=identificacion)
     if request.method == 'POST':
         posibleEnfermedad.delete()
-    return render(request, 'RiesgoME/eliminarEnfermedadME.html', {'posibleEnfermedad': posibleEnfermedad,'sabiasQues': sabiasQue})
+    return render(request, 'RiesgoME/eliminarEnfermedadME.html',
+                  {'posibleEnfermedad': posibleEnfermedad, 'sabiasQues': sabiasQue})
+
 
 def informacionEnf(request, identificacion):
     sabiasQue = filtroSabiasQue
-    definicionEnfermedad = DefinicionEnfermedad.objects.filter(enfermedad = identificacion)
-    contexto = {'definicionEnfermedades': definicionEnfermedad,'sabiasQues': sabiasQue}
+    definicionEnfermedad = DefinicionEnfermedad.objects.filter(enfermedad=identificacion)
+    contexto = {'definicionEnfermedades': definicionEnfermedad, 'sabiasQues': sabiasQue}
     return render(request, 'RiesgoME/informacionEnf.html', contexto)
+
 
 def defEnfMEEdit(request, identificacion):
     sabiasQue = filtroSabiasQue
@@ -827,55 +818,58 @@ def defEnfMEEdit(request, identificacion):
     if request.method == 'GET':
         form = DescripcionEnfermedadForm(instance=definicionEnfermedad)
     else:
-        form = DescripcionEnfermedadForm(request.POST,request.FILES,instance=definicionEnfermedad)
+        form = DescripcionEnfermedadForm(request.POST, request.FILES, instance=definicionEnfermedad)
         if form.is_valid():
             form.save()
-    return render(request, 'SVE/aggDescripcionEnfer.html', {'form': form,'sabiasQues': sabiasQue})
+    return render(request, 'SVE/aggDescripcionEnfer.html', {'form': form, 'sabiasQues': sabiasQue})
+
 
 def defEnfMEEliminar(request, identificacion):
     sabiasQue = filtroSabiasQue
     print('entro')
     definicionEnfermedad = DefinicionEnfermedad.objects.get(id=identificacion)
-    
+
     if request.method == 'POST':
         idEnfermedad = str(definicionEnfermedad.enfermedad.id)
         print(idEnfermedad)
         definicionEnfermedad.delete()
-        return HttpResponseRedirect(reverse('informacionEnf',args=(idEnfermedad)))
-    return render(request, 'RiesgoME/eliminarDefEnfer.html', {'definicionEnfermedad': definicionEnfermedad,'sabiasQues': sabiasQue})
+        return HttpResponseRedirect(reverse('informacionEnf', args=(idEnfermedad)))
+    return render(request, 'RiesgoME/eliminarDefEnfer.html',
+                  {'definicionEnfermedad': definicionEnfermedad, 'sabiasQues': sabiasQue})
 
 
 def aggRecomendaciones(request):
     sabiasQue = filtroSabiasQue
     if request.method == 'POST':
-        form = DescripcionRecomendacionesForm(request.POST,request.FILES)
+        form = DescripcionRecomendacionesForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
     else:
         form = DescripcionRecomendacionesForm()
-    return render(request, 'SVE/crearRecomendaciones.html',{'form':form,'sabiasQues': sabiasQue})
+    return render(request, 'SVE/crearRecomendaciones.html', {'form': form, 'sabiasQues': sabiasQue})
+
 
 def listaRecomendaciones(request):
     sabiasQue = SabiasQue.objects.all()
-    contexto ={'sabiasQues':sabiasQue}
+    contexto = {'sabiasQues': sabiasQue}
 
     return render(request, 'SVE/listaRecomendaciones.html', contexto)
 
+
 def recomendacionesEdit(request, identificacion):
-    
     sabiasQue = SabiasQue.objects.get(id=identificacion)
     if request.method == 'GET':
         form = DescripcionRecomendacionesForm(instance=sabiasQue)
     else:
-        form = DescripcionRecomendacionesForm(request.POST,request.FILES,instance=sabiasQue)
+        form = DescripcionRecomendacionesForm(request.POST, request.FILES, instance=sabiasQue)
         if form.is_valid():
             form.save()
     return render(request, 'SVE/crearRecomendaciones.html', {'form': form})
 
+
 def recomendacionesEliminar(request, identificacion):
-  
     sabiasQue = SabiasQue.objects.get(id=identificacion)
-    
+
     if request.method == 'POST':
         sabiasQue.delete()
         return HttpResponseRedirect(reverse('listaRecomendaciones'))
@@ -898,8 +892,3 @@ def estadistica2(request):
     data = PerfilDemografico.objects.values_list('dependencia0__nombre').annotate(dcount=Count('dependencia0'))
 
     return render(request, 'SVE/estadistica2.html', {'datas': data})
-
-
-  
-
-

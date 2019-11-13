@@ -5,7 +5,7 @@ from apps.Riesgos.views import inicio, riesgoME, enfermedadME, administrarSVE, P
     iniciarTestMEPiloto, informacionEnf, defEnfMEEdit, defEnfMEEliminar, aggRecomendaciones, listaRecomendaciones, \
     recomendacionesEdit, recomendacionesEliminar, estadisticas, estadistica1, estadistica2
 from django.contrib.auth.decorators import login_required
-from django.conf.urls import url
+
 
 urlpatterns = [
     path('', login_required(inicio), name='Inicio'),

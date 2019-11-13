@@ -1,4 +1,3 @@
-from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -18,7 +17,7 @@ class RegistroUsuario(UserCreationForm):
 
         labels = {
 
-            'username': 'ingrese C.C' ,
+            'username': 'ingrese C.C',
             'first_name': 'Nombre',
             'last_name': 'Apellidos',
             'email': 'Correo',

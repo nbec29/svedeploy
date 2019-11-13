@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import CreateView
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from apps.Registro.formularios import RegistroUsuario
 from django.contrib.auth.models import Group
 from django.urls import reverse

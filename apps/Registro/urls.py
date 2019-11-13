@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.Registro.views import registro, login, PersonaCreate
+from apps.Registro.views import login, PersonaCreate
 
 
 urlpatterns = [

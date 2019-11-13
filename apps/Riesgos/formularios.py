@@ -1,11 +1,8 @@
-from django.forms import CheckboxSelectMultiple
 
-from apps.Riesgos.models import  poblacion, PerfilDemografico, HombroME,TestME, CuelloME,ManoME,CodoME,EspaldaDorsalME,\
+from apps.Riesgos.models import poblacion, PerfilDemografico, HombroME,TestME, CuelloME, ManoME, CodoME, EspaldaDorsalME,\
     EspaldaBajaME, PosibleEnfermedad,DefinicionEnfermedad,SabiasQue
 from django import forms
-from django.contrib.auth import  get_user
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+
 
 
 
@@ -490,4 +487,3 @@ class TestMEForm(forms.ModelForm):
 
 
         }
-        
