@@ -13,12 +13,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 # import warnings filter
 from warnings import simplefilter
-simplefilter(action='ignore', category=FutureWarning)
 
+simplefilter(action='ignore', category=FutureWarning)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -30,7 +29,6 @@ SECRET_KEY = '_2@5j%^q38yg9ejq6u$bd7-#v)56=rf29@k(285@pjffv!d0)3'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -62,7 +60,7 @@ ROOT_URLCONF = 'SVE.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,20 +75,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SVE.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-   #     'NAME':  'sve',
-    #    'USER': 'postgres',
-     #   'PASSWORD': '12345',
-      #  'HOST': 'localhost',
-       # 'PORT': 5432,
-   # }
-#}
+# DATABASES = {
+#   'default': {
+#      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#     'NAME':  'sve',
+#    'USER': 'postgres',
+#   'PASSWORD': '12345',
+#  'HOST': 'localhost',
+# 'PORT': 5432,
+# }
+# }
 
 import dj_database_url
 from decouple import config
@@ -119,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -132,7 +128,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -149,8 +144,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/inicio'
-LOGOUT_REDIRECT_URL ='/login'
-
+LOGOUT_REDIRECT_URL = '/login'
 
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -130,10 +130,6 @@ li.Riesgo2 {
 
 }
 
-
-}
-
-
 input[type = text], input[type=number]{
   width: 50%;
   padding: 5px 20px;
@@ -529,7 +525,7 @@ button {
   margin-right: 10px;
   border-radius: 2px;
   background: #00b33c ;
-  display: inline !important;
+  display: inline ;
   width: 50px;
   height: 25px;
   font-size: 15px;
@@ -584,9 +580,9 @@ div {
 
 h3.h3test{
   margin-top: 0px;
-  text-align:center !important;
+  text-align:center ;
  
-  color: red !important;
+  color: red ;
 
 }
 .subtitulo{
@@ -603,7 +599,7 @@ legend
 
 #formulario{
 
-  margin-left: 100px !important ;
+  margin-left: 100px  ;
 
 }
 

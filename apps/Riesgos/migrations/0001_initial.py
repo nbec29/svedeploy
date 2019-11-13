@@ -7,7 +7,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -47,7 +46,9 @@ class Migration(migrations.Migration):
                 ('estado', models.BooleanField(default=True)),
                 ('diagnostico', models.CharField(max_length=30, null=True)),
                 ('idRiesgo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Riesgos.Riesgo')),
-                ('usuario', models.ForeignKey(on_delete=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL), to=settings.AUTH_USER_MODEL)),
+                ('usuario', models.ForeignKey(on_delete=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                                                          to=settings.AUTH_USER_MODEL),
+                                              to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -92,7 +93,8 @@ class Migration(migrations.Migration):
                 ('horasActividadFisi0', models.IntegerField()),
                 ('variaSuJornada0', models.BooleanField()),
                 ('cargo0', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Riesgos.Cargo')),
-                ('dependencia0', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Riesgos.Dependencia')),
+                ('dependencia0',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Riesgos.Dependencia')),
                 ('test0', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='Riesgos.TestME')),
             ],
         ),
@@ -166,7 +168,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('descripcion1', models.CharField(max_length=400)),
                 ('imagen', models.ImageField(null=True, upload_to='photo')),
-                ('enfermedad', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Riesgos.PosibleEnfermedad')),
+                ('enfermedad',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Riesgos.PosibleEnfermedad')),
             ],
         ),
         migrations.CreateModel(

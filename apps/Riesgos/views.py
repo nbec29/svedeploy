@@ -12,7 +12,6 @@ import csv
 from django.db.models import Count
 
 
-
 def normalizarDatos(entradas):
     print('pasa1')
     datos = entradas[0]
@@ -246,7 +245,7 @@ def normalizarDatos(entradas):
 def filtroSabiasQue():
     sabiasQue = SabiasQue.objects.all()
     cantidad = 0
-    for sabias in sabiasQue:
+    for cantidad in sabiasQue:
         cantidad += 1
     cantidad -= 1
     cantidad = (random.randrange(cantidad))
@@ -727,8 +726,8 @@ def iniciarTestMEPiloto(request):
 
             idtest = test.id
 
-            test1 = TestME.objects.filter(id=idtest).update(diagnostico=prediccion)
-            test2 = TestME.objects.filter(id=idtest)
+            TestME.objects.filter(id=idtest).update(diagnostico=prediccion)
+            TestME.objects.filter(id=idtest)
 
     return render(request, 'hombro.html', {'sabiasQues': sabiasQue})
 
@@ -755,8 +754,6 @@ def aggEnfermedad(request):
     else:
         form = EnfermedadForm()
     return render(request, 'SVE/aggEnfermedad.html', {'form': form, 'sabiasQues': sabiasQue})
-
-    return render(request, 'SVE/aggDescripcionEnfer.html', {'enfermedades': enfermedad})
 
 
 def aggDefEnfermedad(request):

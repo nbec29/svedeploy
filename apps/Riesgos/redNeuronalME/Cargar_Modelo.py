@@ -5,7 +5,7 @@ from tensorflow.python.keras.models import load_model
 class predic:
 
     def __init__(self):
-        a = None
+        None
 
     def predecir(self):
         model = load_model("apps/Riesgos/redNeuronalME/modelo_ME.h5")
@@ -15,10 +15,10 @@ class predic:
         # realizar una prediccion con la red neuronal"""
         predicction = model.predict(X)
 
-        #se obtiene la primera linea los nuevos productos"""
+        # se obtiene la primera linea los nuevos productos"""
         predicccion = predicction[0]
 
-        #se pasan desnormalizan los datos de los valores para asi pasarlos a pesos"""
+        # se pasan desnormalizan los datos de los valores para asi pasarlos a pesos"""
         max = 30
         min = 1
         max_min = max - min

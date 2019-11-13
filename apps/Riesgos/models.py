@@ -3,12 +3,12 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-#Modelo que permite crear la tabla Riesgo en la base de datos
- #   id: cadena que identifica a un riesgo
-  #  nombre: nombre del riesgo
-   # models.Model: instancia del modelo
 
+# Create your models here.
+# Modelo que permite crear la tabla Riesgo en la base de datos
+# id: cadena que identifica a un riesgo
+# nombre: nombre del riesgo
+# models.Model: instancia del modelo
 
 
 class Riesgo(models.Model):
@@ -19,13 +19,12 @@ class Riesgo(models.Model):
         return '{} {}'.format(self.nombre, self.id)
 
 
-#Modelo que permite crear la tabla Test en la base de datos
- #   id: cadena que identifica a un test
-  #  idRiesgo: foranea que permite la relacion de uno a uno el riesgo al que pertenece
-   # fecha: fecha de la creacion del Test
-    #descripcion: introduccion de la funcionalidad del test
-    #estado: estado en el que se encuentra el test True o false, por defecto el True
-
+# Modelo que permite crear la tabla Test en la base de datos
+# id: cadena que identifica a un test
+# idRiesgo: foranea que permite la relacion de uno a uno el riesgo al que pertenece
+# fecha: fecha de la creacion del Test
+# descripcion: introduccion de la funcionalidad del test
+# estado: estado en el que se encuentra el test True o false, por defecto el True
 
 
 class TestME(models.Model):
@@ -74,8 +73,8 @@ class PerfilDemografico(models.Model):
 
 
 # Modelo de la tabla en la que se guardan los datos de los desordenes musculo esqueleticos
-#   usuario : usuario que llena los datos
-#  test : el test por defecto es el musculo esqueletico ME valor:1
+# usuario : usuario que llena los datos
+# test : el test por defecto es el musculo esqueletico ME valor:1
 # lugarMolestia: 1 lado izquierdo 2 lado derecho 3 ambos
 # laMolestiaEs: 1 Dolor 2 hormigueo 3 malestar 4 adormecimiento
 # molestiaSepresenta: 1 al realizar mi trabajo 2 todo el tiempo 3 al final del dia 4 al final de la semana 5 en mi casa
