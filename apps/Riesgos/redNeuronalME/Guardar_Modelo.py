@@ -1,5 +1,5 @@
 import pandas as pd
-from keras.layers import *
+from keras.layers import Dense
 from keras.models import Sequential
 
 training_data_df = pd.read_csv("apps/Riesgos/redNeuronalME/dataset/dataset_pruebas_escalado.csv", sep=',')
