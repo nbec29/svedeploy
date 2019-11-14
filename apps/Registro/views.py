@@ -15,8 +15,6 @@ def registro(request):
 def login(request):
     return render(request,'login.html')
 
-
-
 class PersonaCreate(CreateView):
     model = User
     form_class = RegistroUsuario
@@ -29,8 +27,3 @@ class PersonaCreate(CreateView):
         g = Group.objects.get(name = 'Usuarios')
         g.user_set.add(usuario)
         return reverse('login')
-
-    
-
-
-

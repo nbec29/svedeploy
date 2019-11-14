@@ -4,9 +4,6 @@ from tensorflow.python.keras.models import load_model
 
 class predic:
 
-    def __init__(self):
-        None
-
     def predecir(self):
         model = load_model("apps/Riesgos/redNeuronalME/modelo_ME.h5")
         print('hola pase')

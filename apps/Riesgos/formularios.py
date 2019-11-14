@@ -360,8 +360,6 @@ class ManoMEForm(forms.ModelForm):
             'lugarMolestia4': forms.NumberInput(attrs={'class': 'form-control'}),
             'molestiaSepresenta4': forms.NumberInput(attrs={'class': 'form-control'}),
             'laMolestiaEs4': forms.NumberInput(attrs={'class': 'form-control'}),
-            # forms.NumberInput(attrs={'class': 'form-control'})      forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=DEDOS_MANO)
-
             'seEfectuaMolestia4': forms.NumberInput(
                 attrs={'class': 'form-control'}),
             'intensidadMolestia4': forms.NumberInput(attrs={'class': 'form-control'}),
