@@ -245,7 +245,7 @@ def normalizarDatos(entradas):
 def filtroSabiasQue():
     sabiasQue = SabiasQue.objects.all()
     cantidad = 0
-    for sabiasQues in sabiasQue:
+    for sabiasque in sabiasQue:
         cantidad += 1
     cantidad -= 1
     cantidad = (random.randrange(cantidad))
@@ -735,8 +735,7 @@ def enviarCorreoDiagnostico(prediccion, perfilDemografico, user):
     correo = []
     for correos in correo:
         correo.append('jbarrera12345@gmail.com')
-    datos = 'predicción', prediccion, 'cedula', perfilDemografico.cedula0, 'cargo', perfilDemografico.cargo0.nombre,\
-            'dpendencia', perfilDemografico.dependencia0.nombre
+    datos = 'predicción', prediccion, 'cedula', perfilDemografico.cedula0, 'cargo', perfilDemografico.cargo0.nombre, 'dpendencia', perfilDemografico.dependencia0.nombre
 
     subject = 'Diagnostico de Riesgo Musculo-Esqueletico'
     message = datos
