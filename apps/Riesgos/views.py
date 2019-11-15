@@ -247,8 +247,7 @@ def filtroSabiasQue():
     cantidad = 0
     for sabiasque in sabiasQue:
         cantidad += 1
-    cantidad -= 1
-    cantidad = (random.randrange(cantidad))
+    cantidad = (random.randrange(0, cantidad))
 
     sabiasQue = sabiasQue[cantidad]
     return sabiasQue
@@ -256,28 +255,28 @@ def filtroSabiasQue():
 
 # Create your views here.
 def inicio(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     return render(request, 'SVE/homepage.html', {'sabiasQues': sabiasQue})
 
 
 def riesgoME(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     return render(request, 'RiesgoME/musculoEsqueletico.html', {'sabiasQues': sabiasQue})
 
 
 def administrarSVE(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     return render(request, 'SVE/administrarSVE.html', {'sabiasQues': sabiasQue})
 
 
 def EnviarMensaje(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
 
     return render(request, 'RiesgoME/mensajeME.html', {'sabiasQues': sabiasQue})
 
 
 def PoblacionCreate(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     if request.method == 'POST':
         form = PoblacionForm(request.POST)
         if form.is_valid():
@@ -288,14 +287,14 @@ def PoblacionCreate(request):
 
 
 def Poblacionlistar(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     Poblacion = poblacion.objects.filter(Riesgo=1)
     contexto = {'poblaciones': Poblacion, 'sabiasQues': sabiasQue}
     return render(request, 'RiesgoME/listaPoblacion.html', contexto)
 
 
 def poblacionEdit(request, identificacion):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     Poblacion = poblacion.objects.get(identificacion=identificacion)
     if request.method == 'GET':
         form = PoblacionForm(instance=Poblacion)
@@ -311,11 +310,12 @@ def poblacionEliminar(request, identificacion):
     Poblacion = poblacion.objects.get(identificacion=identificacion)
     if request.method == 'POST':
         Poblacion.delete()
-    return render(request, 'RiesgoME/eliminarPoblacionME.html', {'poblacion': Poblacion, 'sabiasQues': sabiasQue})
+        return HttpResponseRedirect(reverse('listarPoblacionME'))
+    return render(request, 'RiesgoME/eliminarPoblacionME.html', {'poblacion': Poblacion,'sabiasQues': sabiasQue})
 
 
 def poblacionEnviarCorreo(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     Poblacion = poblacion.objects.filter(Riesgo=1)
     correo = []
     for correos in Poblacion:
@@ -329,7 +329,7 @@ def poblacionEnviarCorreo(request):
 
 
 def notificaciones(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     perfilDemografico = PerfilDemografico.objects.all()
     contexto = {'perfilDemograficos': perfilDemografico, 'sabiasQues': sabiasQue}
 
@@ -337,7 +337,7 @@ def notificaciones(request):
 
 
 def iniciarTestMEPiloto(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     if request.method == 'POST':
 
         lugarMolestiaHombro = 0
@@ -745,7 +745,7 @@ def enviarCorreoDiagnostico(prediccion, perfilDemografico, user):
 
 
 def aggEnfermedad(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     if request.method == 'POST':
         form = EnfermedadForm(request.POST)
         if form.is_valid():
@@ -756,7 +756,7 @@ def aggEnfermedad(request):
 
 
 def aggDefEnfermedad(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     if request.method == 'POST':
         form = DescripcionEnfermedadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -767,13 +767,13 @@ def aggDefEnfermedad(request):
 
 
 def Enfermedad(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
 
     return render(request, 'SVE/enfermedades.html', {'sabiasQues': sabiasQue})
 
 
 def enfermedadME(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     posibleEnfermedad = PosibleEnfermedad.objects.filter(idRiesgo=1)
     contexto = {'posibleEnfermedades': posibleEnfermedad, 'sabiasQues': sabiasQue}
 
@@ -781,7 +781,7 @@ def enfermedadME(request):
 
 
 def enfermedadMEEdit(request, identificacion):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     posibleEnfermedad = PosibleEnfermedad.objects.get(id=identificacion)
     if request.method == 'GET':
         form = EnfermedadForm(instance=posibleEnfermedad)
@@ -797,19 +797,19 @@ def enfermedadMEEliminar(request, identificacion):
     posibleEnfermedad = PosibleEnfermedad.objects.get(id=identificacion)
     if request.method == 'POST':
         posibleEnfermedad.delete()
-    return render(request, 'RiesgoME/eliminarEnfermedadME.html',
-                  {'posibleEnfermedad': posibleEnfermedad, 'sabiasQues': sabiasQue})
+        return HttpResponseRedirect(reverse('enfermedadesME'))
+    return render(request, 'RiesgoME/eliminarEnfermedadME.html', {'posibleEnfermedad': posibleEnfermedad,'sabiasQues': sabiasQue})
 
 
 def informacionEnf(request, identificacion):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     definicionEnfermedad = DefinicionEnfermedad.objects.filter(enfermedad=identificacion)
     contexto = {'definicionEnfermedades': definicionEnfermedad, 'sabiasQues': sabiasQue}
     return render(request, 'RiesgoME/informacionEnf.html', contexto)
 
 
 def defEnfMEEdit(request, identificacion):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     definicionEnfermedad = DefinicionEnfermedad.objects.get(id=identificacion)
     if request.method == 'GET':
         form = DescripcionEnfermedadForm(instance=definicionEnfermedad)
@@ -821,7 +821,7 @@ def defEnfMEEdit(request, identificacion):
 
 
 def defEnfMEEliminar(request, identificacion):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     print('entro')
     definicionEnfermedad = DefinicionEnfermedad.objects.get(id=identificacion)
 
@@ -835,7 +835,7 @@ def defEnfMEEliminar(request, identificacion):
 
 
 def aggRecomendaciones(request):
-    sabiasQue = filtroSabiasQue
+    sabiasQue = filtroSabiasQue()
     if request.method == 'POST':
         form = DescripcionRecomendacionesForm(request.POST, request.FILES)
         if form.is_valid():
@@ -867,8 +867,9 @@ def recomendacionesEliminar(request, identificacion):
     sabiasQue = SabiasQue.objects.get(id=identificacion)
 
     if request.method == 'POST':
-        sabiasQue.delete()
-        return HttpResponseRedirect(reverse('listaRecomendaciones'))
+            sabiasQue.delete()
+            return HttpResponseRedirect(reverse('listaRecomendaciones'))
+
     return render(request, 'RiesgoME/eliminarDefEnfer.html', {'sabiasQue': sabiasQue})
 
 
